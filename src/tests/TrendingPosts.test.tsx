@@ -8,7 +8,7 @@ jest.mock('../components/TrendingPost.tsx', () =>
 
 interface Post {
   title: string;
-  author: string;
+  author: { name: string; avatar: string };
   date: Date;
   id: string | number;
 }
@@ -17,13 +17,13 @@ it('should map through an array of posts', () => {
   const posts: Post[] = [
     {
       title: 'article name',
-      author: 'Lucas Rodrigues',
+      author: { name: 'Lucas Rodrigues', avatar: '/assets/default-avatar.png' },
       date: new Date('7-4-2010'),
       id: 'foo'
     },
     {
       title: 'article name 2',
-      author: 'Another Name',
+      author: { name: 'Another Name', avatar: '/assets/default-avatar.png' },
       date: new Date('10-29-2015'),
       id: 'bar'
     }

@@ -9,7 +9,10 @@ const HomeFeed = () => {
           posts={[
             {
               title: 'test',
-              author: 'test',
+              author: {
+                name: '404 Unknown',
+                avatar: '/assets/default-avatar.png'
+              },
               date: new Date(),
               id: 'test'
             }
