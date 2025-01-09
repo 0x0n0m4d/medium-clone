@@ -1,5 +1,20 @@
-const TrendingPosts = () => {
-  return <div>Trending!!!</div>;
+import TrendingPost from './TrendingPost';
+
+interface Post {
+  title: string;
+  author: string;
+  date: Date;
+  id: string | number;
+}
+
+const TrendingPosts = ({ posts }: { posts: Post[] }) => {
+  return (
+    <div>
+      {posts.map((post: Post) => (
+        <TrendingPost post={post} key={post.id} />
+      ))}
+    </div>
+  );
 };
 
 export default TrendingPosts;
