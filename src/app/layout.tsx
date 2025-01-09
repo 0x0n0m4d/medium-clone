@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
-import './globals.css';
 import Header from '../components/header/Header';
+import type { Metadata } from 'next';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Medium: Read and write stories',
