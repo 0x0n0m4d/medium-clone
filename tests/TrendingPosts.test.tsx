@@ -1,14 +1,12 @@
 import { render } from '@testing-library/react';
-import TrendingPost from '../components/trending/TrendingPost';
-import TrendingPosts from '../components/trending/TrendingPosts';
+import TrendingPost from '../src/components/trending/TrendingPost';
+import TrendingPosts from '../src/components/trending/TrendingPosts';
 
-jest.mock('../components/TrendingPost.tsx', () =>
-  jest.fn(() => <div>trending post</div>)
-);
+jest.mock('../TrendingPost.tsx', () => jest.fn(() => <div>trending post</div>));
 
 interface Post {
   title: string;
-  author: { name: string; avatar: string };
+  author: string;
   date: Date;
   id: string | number;
 }
@@ -17,30 +15,29 @@ it('should map through an array of posts', () => {
   const posts: Post[] = [
     {
       title: 'article name',
-      author: { name: 'Lucas Rodrigues', avatar: '/assets/default-avatar.png' },
-      date: new Date('7-4-2010'),
+      author: 'Lucas Rodrigues',
+      date: new Date('01-09-2025'),
       id: 'foo'
     },
     {
       title: 'article name 2',
-      author: { name: 'Another Name', avatar: '/assets/default-avatar.png' },
-      date: new Date('10-29-2015'),
+      author: 'Another Name',
+      date: new Date('08-25-2013'),
       id: 'bar'
     }
   ];
 
   render(<TrendingPosts posts={posts} />);
 
-  // First call
   expect(TrendingPost).toHaveBeenNthCalledWith(
     1,
     { post: expect.objectContaining({ id: 'foo' }) },
-    undefined
+    expect.anything()
   );
-  // Second call
+
   expect(TrendingPost).toHaveBeenNthCalledWith(
     2,
     { post: expect.objectContaining({ id: 'bar' }) },
-    undefined
+    expect.anything()
   );
 });

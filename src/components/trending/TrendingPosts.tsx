@@ -1,4 +1,4 @@
-import { Post } from '../interfaces';
+import { Post } from '../../interfaces';
 import TrendingPost from './TrendingPost';
 
 const TrendingPosts = ({ posts }: { posts: Post[] }) => {

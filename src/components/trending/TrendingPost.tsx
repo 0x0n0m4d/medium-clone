@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Post } from '../interfaces';
+import { Post } from '../../interfaces';
 
 const TrendingPost = ({ post }: { post: Post }) => {
   return (

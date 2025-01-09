@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import TrendingPost from '../components/TrendingPost';
+import TrendingPost from '../components/trending/TrendingPost';
 import '@testing-library/jest-dom';
 
 it('should render a trending post', () => {

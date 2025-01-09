@@ -1,4 +1,4 @@
-import TrendingPosts from '../TrendingPosts';
+import TrendingPosts from '../trending/TrendingPosts';
 import HomeFeedPosts from './HomeFeedPosts';
 
 const HomeFeed = () => {
