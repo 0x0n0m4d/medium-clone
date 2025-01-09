@@ -2,16 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: gt-super;
+  src: url("../fonts/GT-Super/GT-Super-Text-Book-Trial.otf");
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --homepage-main-color: #ffc017
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-.global-font {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+.logo {
+  height: 25px;
+}
+
+/* Header */
+header {
+  background-color: var(--homepage-main-color);
+  padding: 25px 18px;
+}
+
+/* Hero */
+.font-hero {
+  font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
 }

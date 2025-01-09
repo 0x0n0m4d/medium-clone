@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 
 export const metadata: Metadata = {
   title: 'Medium: Read and write stories',
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="global-font">
+      <body>
         <Header />
         {children}
       </body>
