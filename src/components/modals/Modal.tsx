@@ -1,13 +1,13 @@
-import { ReactNode, useContext } from 'react';
+import { useContext } from 'react';
 import { ModalContext } from './ModalContext';
 
-interface Props {
-  children: ReactNode;
-}
-
-const Modal = ({ children }: Props) => {
-  const { isModalOpen } = useContext(ModalContext);
-  if (isModalOpen) return <div>{children}</div>;
+const Modal = () => {
+  const { isModalOpen, modalContent } = useContext(ModalContext);
+  return isModalOpen ? (
+    <div className="fixed left-0 right-0 top-0 bottom-0 bg-white/95 z-[1]">
+      {modalContent}
+    </div>
+  ) : null;
 };
 
 export default Modal;
