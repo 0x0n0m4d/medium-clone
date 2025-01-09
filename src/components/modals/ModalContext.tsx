@@ -1,17 +1,23 @@
 import { createContext, ReactNode } from 'react';
 import { useModal } from '@/src/hooks/useModal';
 
-interface Props {
-  children: ReactNode;
+interface IModalContext {
+  modalContent: ReactNode;
+  isModalOpen: Boolean;
+  toggleModal: Function;
 }
 
-const ModalContext = createContext({});
+const ModalContext = createContext<IModalContext>({
+  modalContent: null,
+  isModalOpen: false,
+  toggleModal: () => {}
+});
 
-const ModalProvider = ({ children }: Props) => {
-  const { isModalOpen, toggleModal, modalContent } = useModal();
+const ModalProvider = (children: ReactNode) => {
+  const { modalContent, isModalOpen, toggleModal } = useModal();
 
   return (
-    <ModalContext.Provider value={{ isModalOpen, toggleModal, modalContent }}>
+    <ModalContext.Provider value={{ modalContent, isModalOpen, toggleModal }}>
       {children}
     </ModalContext.Provider>
   );
