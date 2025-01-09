@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-sohne">
+      <body className="global-font">
         <Header />
         {children}
       </body>
