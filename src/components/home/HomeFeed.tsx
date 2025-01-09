@@ -5,7 +5,16 @@ const HomeFeed = () => {
   return (
     <div>
       <section>
-        <TrendingPosts posts={[]} />
+        <TrendingPosts
+          posts={[
+            {
+              title: 'test',
+              author: 'test',
+              date: new Date(),
+              id: 'test'
+            }
+          ]}
+        />
       </section>
       <section>
         <HomeFeedPosts />

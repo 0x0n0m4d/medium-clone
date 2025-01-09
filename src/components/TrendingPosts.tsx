@@ -1,11 +1,5 @@
+import { Post } from '../interfaces';
 import TrendingPost from './TrendingPost';
-
-interface Post {
-  title: string;
-  author: string;
-  date: Date;
-  id: string | number;
-}
 
 const TrendingPosts = ({ posts }: { posts: Post[] }) => {
   return (
