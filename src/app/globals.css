@@ -7,6 +7,11 @@
   src: url("../fonts/GT-Super/GT-Super-Text-Book-Trial.otf");
 }
 
+@font-face {
+  font-family: sohne;
+  src: url("../fonts/söhne/TestSöhne-Buch.otf");
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -30,6 +35,10 @@ header {
 }
 
 /* Hero */
-.font-hero {
+.hero-text {
   font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.hero-subtext {
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
