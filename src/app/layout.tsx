@@ -12,12 +12,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { modalContent, isModalOpen, toggleModal } = useModal();
+  const { modalContent, isModalOpen, setModalOpen } = useModal();
   return (
     <html lang="en">
       <body>
         <ModalContext.Provider
-          value={{ modalContent, isModalOpen, toggleModal }}
+          value={{ modalContent, isModalOpen, setModalOpen }}
         >
           <Modal />
           <Header />

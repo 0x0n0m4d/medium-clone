@@ -4,7 +4,7 @@ import SignInPage from '../auth/SignInPage';
 import ModalContext from '../modals/ModalContext';
 
 const Nav = () => {
-  const { toggleModal } = useContext(ModalContext);
+  const { setModalOpen } = useContext(ModalContext);
 
   return (
     <nav className="outline-none decoration-transparent text-black/80 text-sm">
@@ -17,7 +17,10 @@ const Nav = () => {
       <Link href="#" className="mr-6">
         Write
       </Link>
-      <button className="mr-6" onClick={() => toggleModal(<SignInPage />)}>
+      <button
+        className="mr-6"
+        onClick={() => setModalOpen(true, <SignInPage />)}
+      >
         Sign In
       </button>
     </nav>

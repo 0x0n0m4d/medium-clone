@@ -5,7 +5,7 @@ import SignUpPage from '../auth/SignUpPage';
 import ModalContext from '../modals/ModalContext';
 
 const Hero = () => {
-  const { toggleModal } = useContext(ModalContext);
+  const { setModalOpen } = useContext(ModalContext);
 
   return (
     <div className="bg-[var(--homepage-main-color)] flex justify-center">
@@ -18,7 +18,7 @@ const Hero = () => {
         </h3>
         <button
           className="w-52 p-3 leading-6 text-xl bg-black/95 border border-black/90 rounded-full text-white"
-          onClick={() => toggleModal(<SignUpPage />)}
+          onClick={() => setModalOpen(true, <SignUpPage />)}
         >
           Start reading
         </button>
