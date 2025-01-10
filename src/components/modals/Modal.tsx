@@ -13,7 +13,7 @@ const Modal = () => {
         if (id === 'modal') setModalOpen(false);
       }}
     >
-      <div className="modal-content-animation relative rounded bg-white px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col align-center justify-center">
+      <div className="modal-content-animation relative rounded bg-white px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col w-[600px] lg:w-[678px] h-[695px]">
         <button
           className="absolute top-3 right-3 text-gray-400/60 text-2xl"
           onClick={() => setModalOpen(false)}
