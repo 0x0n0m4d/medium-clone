@@ -1,11 +1,8 @@
-import { useContext } from 'react';
 import Link from 'next/link';
 import SignInPage from '../auth/SignInPage';
-import ModalContext from '../modals/ModalContext';
+import OpenModalButton from '../modals/OpenModalButton';
 
 const Nav = () => {
-  const { setModalOpen } = useContext(ModalContext);
-
   return (
     <nav className="outline-none decoration-transparent text-black/80 text-sm">
       <Link href="#" className="mr-6">
@@ -17,12 +14,9 @@ const Nav = () => {
       <Link href="#" className="mr-6">
         Write
       </Link>
-      <button
-        className="mr-6"
-        onClick={() => setModalOpen(true, <SignInPage />)}
-      >
+      <OpenModalButton className="mr-6" element={<SignInPage />}>
         Sign In
-      </button>
+      </OpenModalButton>
     </nav>
   );
 };
