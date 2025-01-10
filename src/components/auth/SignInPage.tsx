@@ -4,6 +4,9 @@ import SignUpPage from './SignUpPage';
 const SignInPage = () => {
   return (
     <div>
+      <h2 className="serif text-black/95 text-[28px] mb-[50px]">
+        Welcome back.
+      </h2>
       <ul>
         <li>
           <button>
@@ -18,7 +21,9 @@ const SignInPage = () => {
       </ul>
       <p>
         No account?{' '}
-        <OpenModalButton element={<SignUpPage />}>Create one</OpenModalButton>
+        <OpenModalButton className="font-bold" element={<SignUpPage />}>
+          Create one
+        </OpenModalButton>
       </p>
     </div>
   );

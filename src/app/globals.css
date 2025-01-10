@@ -12,6 +12,15 @@
   src: url("../fonts/söhne/TestSöhne-Buch.otf");
 }
 
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -39,16 +48,22 @@ button {
   background: none;
 }
 
+li {
+  list-style-type: none;
+}
+
+.serif {
+  font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+
 /* Logo */
 .logo {
   height: 25px;
 }
 
 /* Hero */
-.hero-text {
-  font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
-}
-
 .hero-subtext {
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -67,4 +82,16 @@ button {
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+}
+
+/* Modals */
+.modal-animation {
+  animation: 300ms cubic-bezier(0.25, 0.1, 0.25, 1) 0s 1 normal forwards running 
+    opacity;
+}
+
+.modal-content-animation {
+  animation: 300ms cubic-bezier(0.25, 0.1, 0.25, 1) 0s 1 normal forwards running 
+    opacity,
+    300ms cubic-bezier(0.25, 0.1, 0.25, 1) 0s 1 normal forwards running scale;
 }
