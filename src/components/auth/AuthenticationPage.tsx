@@ -17,23 +17,23 @@ const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
       <div>
         {children}
         {isSignUpPage ? (
-          <p className="text-lg">
+          <p className="text-xl">
             Already have an account?{' '}
             <OpenModalButton
-              className="font-extrabold text-[var(--homepage-main-color)] hover:text-yellow-600"
+              className="text-lime-600 hover:text-lime-700"
               element={<SignInPage />}
             >
-              Sign In
+              <b>Sign In</b>
             </OpenModalButton>
           </p>
         ) : (
-          <p className="text-lg">
+          <p className="text-xl">
             No account?{' '}
             <OpenModalButton
-              className="font-extrabold text-[var(--homepage-main-color)] hover:text-yellow-600"
+              className="text-lime-600 hover:text-lime-700"
               element={<SignUpPage />}
             >
-              Create one
+              <b>Create one</b>
             </OpenModalButton>
           </p>
         )}

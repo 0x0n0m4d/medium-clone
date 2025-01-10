@@ -12,6 +12,11 @@
   src: url("../fonts/söhne/TestSöhne-Buch.otf");
 }
 
+@font-face {
+  font-family: sohne-bold;
+  src: url("../fonts/söhne/TestSöhne-Dreiviertelfett.otf")
+}
+
 @keyframes opacity {
   0% {
     opacity: 0;
@@ -50,6 +55,10 @@ button {
 
 li {
   list-style-type: none;
+}
+
+b {
+  font-family: sohne-bold, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .serif {
@@ -98,7 +107,7 @@ li {
 
 /* Icon */
 .thin-icon {
-  -webkit-text-stroke: 2px white;
+  -webkit-text-stroke: 1px white;
 }
 
 .floating-icon {
