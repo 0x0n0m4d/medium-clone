@@ -1,4 +1,4 @@
-const SignInOptions = () => {
+const SignInPage = () => {
   return (
     <ul>
       <li>
@@ -15,4 +15,4 @@ const SignInOptions = () => {
   );
 };
 
-export default SignInOptions;
+export default SignInPage;

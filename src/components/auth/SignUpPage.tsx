@@ -1,4 +1,4 @@
-const SignUpOptions = () => {
+const SignUpPage = () => {
   return (
     <ul>
       <li>
@@ -15,4 +15,4 @@ const SignUpOptions = () => {
   );
 };
 
-export default SignUpOptions;
+export default SignUpPage;

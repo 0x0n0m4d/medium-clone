@@ -1,5 +1,6 @@
+'use client';
+
 import { createContext, ReactNode } from 'react';
-import { useModal } from '@/src/hooks/useModal';
 
 interface IModalContext {
   modalContent: ReactNode;
@@ -13,14 +14,4 @@ const ModalContext = createContext<IModalContext>({
   toggleModal: () => {}
 });
 
-const ModalProvider = (children: ReactNode) => {
-  const { modalContent, isModalOpen, toggleModal } = useModal();
-
-  return (
-    <ModalContext.Provider value={{ modalContent, isModalOpen, toggleModal }}>
-      {children}
-    </ModalContext.Provider>
-  );
-};
-
-export { ModalContext, ModalProvider };
+export default ModalContext;

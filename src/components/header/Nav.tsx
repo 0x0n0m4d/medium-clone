@@ -1,6 +1,11 @@
+import { useContext } from 'react';
 import Link from 'next/link';
+import SignInPage from '../auth/SignInPage';
+import ModalContext from '../modals/ModalContext';
 
 const Nav = () => {
+  const { toggleModal } = useContext(ModalContext);
+
   return (
     <nav className="outline-none decoration-transparent text-black/80 text-sm">
       <Link href="#" className="mr-6">
@@ -12,9 +17,9 @@ const Nav = () => {
       <Link href="#" className="mr-6">
         Write
       </Link>
-      <Link href="#" className="mr-6">
+      <button className="mr-6" onClick={() => toggleModal(<SignInPage />)}>
         Sign In
-      </Link>
+      </button>
     </nav>
   );
 };
