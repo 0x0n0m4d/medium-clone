@@ -9,6 +9,7 @@ const Modal = () => {
         <button
           className="absolute top-3 right-3 text-gray-400/60 text-2xl"
           onClick={() => setModalOpen(false)}
+          aria-label="close"
         >
           <i className="fa-solid fa-xmark" />
         </button>

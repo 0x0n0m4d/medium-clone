@@ -1,0 +1,61 @@
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom';
+import Modal from '../components/modals/Modal';
+import ModalContext from '../components/modals/ModalContext';
+
+describe('modal states', () => {
+  const setModalOpen = jest.fn();
+
+  it('should close modal', async () => {
+    render(
+      <ModalContext.Provider
+        value={{
+          setModalOpen,
+          isModalOpen: true,
+          modalContent: <div>content</div>
+        }}
+      >
+        <Modal />
+      </ModalContext.Provider>
+    );
+
+    const closeModalButton = screen.getByRole('button', { name: 'close' });
+
+    await userEvent.click(closeModalButton);
+
+    expect(setModalOpen).toHaveBeenCalledWith(false);
+  });
+
+  it('shows `modalContent` when `isModalOpen` is true', () => {
+    render(
+      <ModalContext.Provider
+        value={{
+          setModalOpen,
+          isModalOpen: true,
+          modalContent: <div>( ._.) 200 OK</div>
+        }}
+      >
+        <Modal />
+      </ModalContext.Provider>
+    );
+
+    expect(screen.queryByText('( ._.) 200 OK')).toBeInTheDocument();
+  });
+
+  it('does not show `modalContent` when `isModalOpen` is false', () => {
+    render(
+      <ModalContext.Provider
+        value={{
+          setModalOpen,
+          isModalOpen: false,
+          modalContent: <div>( ._.) 404 Not Found!</div>
+        }}
+      >
+        <Modal />
+      </ModalContext.Provider>
+    );
+
+    expect(screen.queryByText('( ._.) 404 Not Found!')).not.toBeInTheDocument();
+  });
+});
