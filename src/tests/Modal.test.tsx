@@ -4,10 +4,10 @@ import '@testing-library/jest-dom';
 import Modal from '../components/modals/Modal';
 import ModalContext from '../components/modals/ModalContext';
 
-describe('modal states', () => {
+describe('close modal', () => {
   const setModalOpen = jest.fn();
 
-  it('should close modal', async () => {
+  it('should close modal when close modal button is clicked', async () => {
     render(
       <ModalContext.Provider
         value={{
@@ -23,6 +23,24 @@ describe('modal states', () => {
     const closeModalButton = screen.getByRole('button', { name: 'close' });
 
     await userEvent.click(closeModalButton);
+
+    expect(setModalOpen).toHaveBeenCalledWith(false);
+  });
+
+  it('should close modal when outside of modal is clicked', async () => {
+    render(
+      <ModalContext.Provider
+        value={{
+          setModalOpen,
+          isModalOpen: true,
+          modalContent: <div>content</div>
+        }}
+      >
+        <Modal />
+      </ModalContext.Provider>
+    );
+
+    await userEvent.click(screen.getByTestId('modal'));
 
     expect(setModalOpen).toHaveBeenCalledWith(false);
   });
