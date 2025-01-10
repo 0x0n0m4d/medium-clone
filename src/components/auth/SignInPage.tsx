@@ -1,10 +1,7 @@
-import { useContext } from 'react';
-import ModalContext from '../modals/ModalContext';
+import OpenModalButton from '../modals/OpenModalButton';
 import SignUpPage from './SignUpPage';
 
 const SignInPage = () => {
-  const { setModalOpen } = useContext(ModalContext);
-
   return (
     <div>
       <ul>
@@ -21,9 +18,7 @@ const SignInPage = () => {
       </ul>
       <p>
         No account?{' '}
-        <button onClick={() => setModalOpen(true, <SignUpPage />)}>
-          Create one
-        </button>
+        <OpenModalButton element={<SignUpPage />}>Create one</OpenModalButton>
       </p>
     </div>
   );

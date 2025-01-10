@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import TrendingPost from '../components/trending/TrendingPost';
 import TrendingPosts from '../components/trending/TrendingPosts';
 
-jest.mock('../components/TrendingPost.tsx', () =>
+jest.mock('../components/trending/TrendingPost.tsx', () =>
   jest.fn(() => <div>trending post</div>)
 );
 
