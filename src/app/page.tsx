@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Hero from '../components/home/Hero';
-import HomeFeed from '../components/home/HomeFeed';
 
 export const metadata: Metadata = {
   title: 'Medium: Read and write stories',
@@ -12,7 +11,6 @@ const Home = () => {
   return (
     <main>
       <Hero />
-      <HomeFeed />
     </main>
   );
 };

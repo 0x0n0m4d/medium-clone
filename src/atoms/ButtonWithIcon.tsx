@@ -9,7 +9,7 @@ interface Props {
 const ButtonWithIcon = ({ icon, children, onClick }: Props) => {
   return (
     <button
-      className="w-full h-full flex justify-center align-center"
+      className="w-full h-full flex justify-center items-center"
       onClick={onClick}
     >
       <span className="floating-icon absolute text-2xl">
