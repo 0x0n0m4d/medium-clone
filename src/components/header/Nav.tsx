@@ -5,7 +5,7 @@ import OpenModalButton from '../modals/OpenModalButton';
 
 const Nav = () => {
   return (
-    <nav className="outline-none decoration-transparent text-black/90 text-lg mr-4">
+    <nav className="outline-none decoration-transparent text-black/90 text-sm mr-4">
       <Link href="#" className="mr-7">
         Our story
       </Link>
@@ -19,7 +19,7 @@ const Nav = () => {
         Sign In
       </OpenModalButton>
       <OpenModalButton
-        className="w-[105px] p-2.5 leading-6 text-xl bg-black/95 border border-black/90 rounded-full text-white tracking-tight"
+        className="w-[105px] p-2.5 leading-6 bg-black/85 border border-black/85 hover:bg-black transition duration-200 rounded-full text-white tracking-tight"
         element={<SignUpPage />}
       >
         Get started

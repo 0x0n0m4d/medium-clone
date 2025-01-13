@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const Home = () => {
   return (
-    <main>
+    <main className="w-full flex justify-center px-16 sm:px-20">
       <Hero />
     </main>
   );
