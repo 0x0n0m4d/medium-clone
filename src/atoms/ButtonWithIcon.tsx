@@ -12,10 +12,10 @@ const ButtonWithIcon = ({ icon, children, onClick }: Props) => {
       className="w-full h-full flex justify-center items-center"
       onClick={onClick}
     >
-      <span className="floating-icon absolute text-2xl">
+      <span className="floating-icon absolute icon-size">
         <i className={icon} />
       </span>
-      <span className="button-text text-black/80 tracking-tight my-auto">
+      <span className="text-md text-black/80 tracking-tight my-auto">
         {children}
       </span>
     </button>

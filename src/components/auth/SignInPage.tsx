@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import ButtonWithIcon from '../../atoms/ButtonWithIcon';
+import ModalContext from '../modals/ModalContext';
 import AuthenticationPage from './AuthenticationPage';
+import SignInWithEmail from './SignInWithEmail';
 
 const SignInPage = () => {
+  const { setModalOpen } = useContext(ModalContext);
   return (
     <AuthenticationPage isSignUpPage={false}>
       <ul className="grid gap-4 place-items-center mb-14">
@@ -34,7 +38,7 @@ const SignInPage = () => {
         <li className="flex relative border border-solid border-black/70 rounded-full w-[300px] h-[42.5px]">
           <ButtonWithIcon
             icon="fa-regular fa-envelope thin-icon"
-            onClick={() => {}}
+            onClick={() => setModalOpen(true, <SignInWithEmail />)}
           >
             Sign in with email
           </ButtonWithIcon>

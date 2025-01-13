@@ -7,7 +7,7 @@ const Modal = () => {
     <div
       id="modal"
       data-testid="modal"
-      className="modal-animation fixed left-0 right-0 top-0 bottom-0 bg-white/95 z-[1] flex justify-center items-center overflow-x-hidden overflow-y-auto"
+      className="modal-animation fixed left-0 right-0 top-0 bottom-0 bg-white/95 z-20 flex justify-center items-center overflow-x-hidden overflow-y-auto"
       onClick={e => {
         const { id } = e.target as HTMLInputElement;
         if (id === 'modal') setModalOpen(false);
