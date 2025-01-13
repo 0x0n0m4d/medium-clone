@@ -20,7 +20,7 @@ const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
           <p className="text-md">
             Already have an account?{' '}
             <OpenModalButton
-              className="text-lime-600 hover:text-lime-700"
+              className="text-primary hover:text-phover"
               element={<SignInPage />}
             >
               <b>Sign In</b>
@@ -30,7 +30,7 @@ const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
           <p className="text-md">
             No account?{' '}
             <OpenModalButton
-              className="text-lime-600 hover:text-lime-700"
+              className="text-primary hover:text-phover"
               element={<SignUpPage />}
             >
               <b>Create one</b>
