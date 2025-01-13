@@ -17,7 +17,13 @@ const EmailForm = ({ onSubmit, id }: Props) => {
     >
       <div>
         <label htmlFor={id}>Your email</label>
-        <input type="email" id={id} onChange={e => setEmail(e.target.value)} />
+        <input
+          type="email"
+          id={id}
+          onChange={e => setEmail(e.target.value)}
+          value={email}
+          required
+        />
       </div>
       <button type="submit">Continue</button>
     </form>
