@@ -11,13 +11,13 @@ interface Props {
 const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
   return (
     <div className="grid place-items-center h-full">
-      <h2 className="serif text-black/95 text-xl">
+      <h2 className="serif text-black/95 text-xl mt-10">
         {isSignUpPage ? 'Join Medium.' : 'Welcome back.'}
       </h2>
       <div>
         {children}
         {isSignUpPage ? (
-          <p className="text-md">
+          <p className="text-base">
             Already have an account?{' '}
             <OpenModalButton
               className="text-primary hover:text-phover"
@@ -27,7 +27,7 @@ const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
             </OpenModalButton>
           </p>
         ) : (
-          <p className="text-md">
+          <p className="text-base">
             No account?{' '}
             <OpenModalButton
               className="text-primary hover:text-phover"
@@ -38,14 +38,14 @@ const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
           </p>
         )}
       </div>
-      <div className="mx-20">
+      <div className="mx-32">
         {!isSignUpPage && (
-          <p className="text-sm font-light text-black/60 mb-14">
+          <p className="text-xs font-light text-black/60 mb-14">
             Forgot email or trouble signing in?{' '}
             <span className="underline cursor-pointer">Get help.</span>
           </p>
         )}
-        <p className="text-sm font-light text-black/60">
+        <p className="text-xs font-light text-black/60">
           Click {isSignUpPage ? '"Sign Up"' : '"Sign In"'} to agree to Medium's{' '}
           <span className="underline cursor-pointer">Terms of Service</span> and
           acknowledge that Medium's{' '}

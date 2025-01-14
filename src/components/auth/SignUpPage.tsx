@@ -8,7 +8,7 @@ const SignUpPage = () => {
   const { setModalOpen } = useContext(ModalContext);
   return (
     <AuthenticationPage isSignUpPage={true}>
-      <ul className="grid gap-4 place-items-center mb-14 w-full">
+      <ul className="grid gap-4 place-items-center mb-32 w-full">
         <li className="flex relative border border-solid border-black/70 rounded-full w-[300px] h-[42.5px]">
           <ButtonWithIcon icon="fa-brands fa-google" onClick={() => {}}>
             Sign up with google

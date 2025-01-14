@@ -11,11 +11,14 @@ export default {
       sm: '886px'
     },
     fontSize: {
-      sm: '13px',
-      md: '16px',
+      xs: '13px',
+      sm: '14px',
+      base: '16px',
+      md: '20px',
       lg: '22px',
       xl: '28px',
-      banner: '120px'
+      '2xl': '106px',
+      '3xl': '120px'
     },
     extend: {
       colors: {
@@ -23,6 +26,9 @@ export default {
         foreground: 'var(--foreground)',
         primary: 'var(--primary)',
         phover: '#10540e'
+      },
+      maxWidth: {
+        xl: '1192px'
       }
     }
   },
