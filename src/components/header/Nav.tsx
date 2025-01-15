@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import SignInPage from '../auth/SignInPage';
-import SignUpPage from '../auth/SignUpPage';
+import SignInDialog from '../auth/SignInDialog';
+import SignUpDialog from '../auth/SignUpDialog';
 import OpenModalButton from '../modals/OpenModalButton';
 
 const Nav = () => {
@@ -15,12 +15,12 @@ const Nav = () => {
       <Link href="#" className="mr-7">
         Write
       </Link>
-      <OpenModalButton className="mr-7" element={<SignInPage />}>
+      <OpenModalButton className="mr-7" element={<SignInDialog />}>
         Sign In
       </OpenModalButton>
       <OpenModalButton
         className="w-[105px] px-2.5 py-5 leading-6 bg-black/85 border border-black/85 hover:bg-black transition duration-200 rounded-full text-white text-center tracking-tight"
-        element={<SignUpPage />}
+        element={<SignUpDialog />}
       >
         Get started
       </OpenModalButton>

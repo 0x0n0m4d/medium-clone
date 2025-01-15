@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 import ButtonWithIcon from '../../atoms/ButtonWithIcon';
 import ModalContext from '../modals/ModalContext';
-import AuthenticationPage from './AuthenticationPage';
+import AuthenticationDialog from './AuthenticationDialog';
 import SignInWithEmail from './SignInWithEmail';
 
-const SignInPage = () => {
+const SignInDialog = () => {
   const { setModalOpen } = useContext(ModalContext);
   return (
-    <AuthenticationPage isSignUpPage={false}>
+    <AuthenticationDialog isSignUpPage={false}>
       <ul className="grid gap-4 place-items-center mb-14">
         <li className="flex relative border border-solid border-black/70 rounded-full w-[300px] h-[42.5px]">
           <ButtonWithIcon icon="fa-brands fa-google" onClick={() => {}}>
@@ -44,8 +44,8 @@ const SignInPage = () => {
           </ButtonWithIcon>
         </li>
       </ul>
-    </AuthenticationPage>
+    </AuthenticationDialog>
   );
 };
 
-export default SignInPage;
+export default SignInDialog;

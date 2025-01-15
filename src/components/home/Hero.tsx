@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import SignUpPage from '../auth/SignUpPage';
+import SignUpDialog from '../auth/SignUpDialog';
 import OpenModalButton from '../modals/OpenModalButton';
 
 const Hero = () => {
@@ -16,7 +16,7 @@ const Hero = () => {
         </h3>
         <OpenModalButton
           className="w-[196px] py-7 leading-6 text-md bg-primary hover:bg-phover sm:bg-black/90 sm:hover:bg-black border border-black/90 rounded-full text-white z-10"
-          element={<SignUpPage />}
+          element={<SignUpDialog />}
         >
           Start reading
         </OpenModalButton>

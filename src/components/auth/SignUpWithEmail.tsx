@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import AuthenticationForm from '../forms/AuthenticationForm';
 import ModalContext from '../modals/ModalContext';
-import SignUpPage from './SignUpPage';
+import SignUpDialog from './SignUpDialog';
 
 const SignUpWithEmail = () => {
   const { setModalOpen } = useContext(ModalContext);
@@ -15,8 +15,7 @@ const SignUpWithEmail = () => {
       </div>
       <AuthenticationForm
         onSubmit={() => {}}
-        id="sign-up-email"
-        onClick={() => setModalOpen(true, <SignUpPage />)}
+        onClick={() => setModalOpen(true, <SignUpDialog />)}
       />
       <p className="text-sm font-light text-black/60 max-w-[324px] mb-28 mt-5">
         This site is protected by reCAPTCHA Enterprise and the{' '}

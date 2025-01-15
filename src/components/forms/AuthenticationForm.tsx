@@ -1,12 +1,14 @@
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useContext, useState } from 'react';
+import CheckInboxDialog from '../auth/CheckInboxDialog';
+import ModalContext from '../modals/ModalContext';
 
 interface Props {
   onSubmit: Function;
-  id: string;
   onClick: MouseEventHandler;
 }
 
-const AuthenticationForm = ({ onSubmit, id, onClick }: Props) => {
+const AuthenticationForm = ({ onSubmit, onClick }: Props) => {
+  const { setModalOpen } = useContext(ModalContext);
   const [email, setEmail] = useState('');
 
   return (
@@ -18,15 +20,11 @@ const AuthenticationForm = ({ onSubmit, id, onClick }: Props) => {
       className="flex flex-col items-center gap-2"
     >
       <div className="flex flex-col items-center gap-3 mt-10 mb-10">
-        <label
-          htmlFor={id}
-          className="text-sm leading-[20px] text-center text-black/75"
-        >
+        <label className="text-sm leading-[20px] text-center text-black/75">
           Your email
         </label>
         <input
           type="email"
-          id={id}
           onChange={e => setEmail(e.target.value)}
           value={email}
           className="bg-stone-100 focus:bg-stone-100/50 focus:border focus:border-solid focus:border-black w-[270px] py-5 px-3 rounded-md duration-300 text-center outline-none"
@@ -36,6 +34,7 @@ const AuthenticationForm = ({ onSubmit, id, onClick }: Props) => {
       <button
         type="submit"
         className="w-[226px] text-white text-sm py-4 px-2.5 bg-black/90 hover:bg-black rounded-full"
+        onClick={() => setModalOpen(true, <CheckInboxDialog email={email} />)}
       >
         Continue
       </button>

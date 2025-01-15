@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import AuthenticationForm from '../forms/AuthenticationForm';
 import ModalContext from '../modals/ModalContext';
-import SignInPage from './SignInPage';
+import SignInDialog from './SignInDialog';
 
 const SignInWithEmail = () => {
   const { setModalOpen } = useContext(ModalContext);
@@ -18,7 +18,7 @@ const SignInWithEmail = () => {
         <AuthenticationForm
           onSubmit={() => {}}
           id="sign-in-email"
-          onClick={() => setModalOpen(true, <SignInPage />)}
+          onClick={() => setModalOpen(true, <SignInDialog />)}
         />
       </div>
     </div>

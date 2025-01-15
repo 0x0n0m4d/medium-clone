@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
 import OpenModalButton from '../modals/OpenModalButton';
-import SignInPage from './SignInPage';
-import SignUpPage from './SignUpPage';
+import SignInDialog from './SignInDialog';
+import SignUpDialog from './SignUpDialog';
 
 interface Props {
   children: ReactNode;
   isSignUpPage: boolean;
 }
 
-const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
+const AuthenticationDialog = ({ children, isSignUpPage }: Props) => {
   return (
     <div className="grid place-items-center h-full">
       <h2 className="serif text-black/95 text-xl mt-10">
@@ -21,7 +21,7 @@ const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
             Already have an account?{' '}
             <OpenModalButton
               className="text-primary hover:text-phover"
-              element={<SignInPage />}
+              element={<SignInDialog />}
             >
               <b>Sign In</b>
             </OpenModalButton>
@@ -31,7 +31,7 @@ const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
             No account?{' '}
             <OpenModalButton
               className="text-primary hover:text-phover"
-              element={<SignUpPage />}
+              element={<SignUpDialog />}
             >
               <b>Create one</b>
             </OpenModalButton>
@@ -57,4 +57,4 @@ const AuthenticationPage = ({ children, isSignUpPage }: Props) => {
   );
 };
 
-export default AuthenticationPage;
+export default AuthenticationDialog;
