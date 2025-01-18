@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div className="w-full max-w-xl flex flex-grow items-center h-screen min-h-[630px] overflow-x-hidden">
       <div className="flex flex-col mt-20 justify-center">
-        <h2 className="serif leading-[100px] min-w-[800px] text-2xl sm:text-3xl text-black/85 font-normal mb-20 text-thin">
+        <h2 className="serif leading-[100px] min-w-[800px] text-3xl sm:text-4xl text-black/85 font-normal mb-20 text-thin">
           Human <br /> stories & ideas
         </h2>
         <h3 className="hero-subtext text-lg font-normal mb-20 text-black/90">

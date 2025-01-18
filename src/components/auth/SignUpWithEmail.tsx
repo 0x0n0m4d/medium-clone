@@ -1,10 +1,7 @@
-import { useContext } from 'react';
 import AuthenticationForm from '../forms/AuthenticationForm';
-import ModalContext from '../modals/ModalContext';
 import SignUpDialog from './SignUpDialog';
 
 const SignUpWithEmail = () => {
-  const { setModalOpen } = useContext(ModalContext);
   return (
     <div className="grid items-center justify-center h-full">
       <div className="flex flex-col justify-center gap-7 mt-32">
@@ -14,8 +11,9 @@ const SignUpWithEmail = () => {
         </p>
       </div>
       <AuthenticationForm
+        isLogin={false}
         onSubmit={() => {}}
-        onClick={() => setModalOpen(true, <SignUpDialog />)}
+        element={<SignUpDialog />}
       />
       <p className="text-sm font-light text-black/60 max-w-[324px] mb-28 mt-5">
         This site is protected by reCAPTCHA Enterprise and the{' '}

@@ -1,14 +1,16 @@
-import { MouseEventHandler, useContext, useState } from 'react';
+'use client';
+
+import { ReactNode, useState } from 'react';
 import CheckInboxDialog from '../auth/CheckInboxDialog';
-import ModalContext from '../modals/ModalContext';
+import OpenModalButton from '../modals/OpenModalButton';
 
 interface Props {
+  isLogin: boolean;
   onSubmit: Function;
-  onClick: MouseEventHandler;
+  element: ReactNode;
 }
 
-const AuthenticationForm = ({ onSubmit, onClick }: Props) => {
-  const { setModalOpen } = useContext(ModalContext);
+const AuthenticationForm = ({ isLogin, onSubmit, element }: Props) => {
   const [email, setEmail] = useState('');
 
   return (
@@ -27,25 +29,24 @@ const AuthenticationForm = ({ onSubmit, onClick }: Props) => {
           type="email"
           onChange={e => setEmail(e.target.value)}
           value={email}
-          className="bg-stone-100 focus:bg-stone-100/50 focus:border focus:border-solid focus:border-black w-[270px] py-5 px-3 rounded-md duration-300 text-center outline-none"
+          className="bg-stone-100 focus:bg-stone-100/50 focus:border focus:border-solid focus:border-black w-[270px] py-5 px-3 rounded-md duration-300 text-center text-md outline-none"
           required
         />
       </div>
-      <button
-        type="submit"
+      <OpenModalButton
         className="w-[226px] text-white text-sm py-4 px-2.5 bg-black/90 hover:bg-black rounded-full"
-        onClick={() => setModalOpen(true, <CheckInboxDialog email={email} />)}
+        element={<CheckInboxDialog email={email} isLogin={isLogin} />}
       >
         Continue
-      </button>
+      </OpenModalButton>
       <div className="flex mt-8">
-        <button
+        <OpenModalButton
+          element={element}
           className="text-sm text-primary hover:text-phover transition duration-200"
-          onClick={onClick}
         >
           <i className="fa-solid fa-chevron-left thin-icon text-sm" />
-          &nbsp;&nbsp; All sign up options
-        </button>
+          {isLogin ? '  All sign in options' : '  All sign up options'}
+        </OpenModalButton>
       </div>
     </form>
   );

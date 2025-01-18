@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext } from 'react';
 import ButtonWithIcon from '../../atoms/ButtonWithIcon';
 import ModalContext from '../modals/ModalContext';

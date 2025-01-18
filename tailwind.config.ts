@@ -8,7 +8,8 @@ export default {
   ],
   theme: {
     screens: {
-      sm: '886px'
+      sm: '886px',
+      md: '987px'
     },
     fontSize: {
       xs: '13px',
@@ -17,8 +18,9 @@ export default {
       md: '20px',
       lg: '22px',
       xl: '28px',
-      '2xl': '106px',
-      '3xl': '120px'
+      '2xl': '32px',
+      '3xl': '106px',
+      '4xl': '120px'
     },
     extend: {
       colors: {

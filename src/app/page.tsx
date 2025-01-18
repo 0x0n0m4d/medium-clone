@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import Header from '../components/header/Header';
+import Footer from '../components/home/Footer';
 import Hero from '../components/home/Hero';
 
 export const metadata: Metadata = {
@@ -9,9 +11,13 @@ export const metadata: Metadata = {
 
 const Home = () => {
   return (
-    <main className="w-full flex justify-center px-16 sm:px-20">
-      <Hero />
-    </main>
+    <>
+      <Header />
+      <main className="w-full flex justify-center px-16 sm:px-20">
+        <Hero />
+      </main>
+      <Footer />
+    </>
   );
 };
 

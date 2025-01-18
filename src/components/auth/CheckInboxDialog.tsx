@@ -4,17 +4,25 @@ import ModalContext from '../modals/ModalContext';
 
 interface Props {
   email: string;
+  isLogin: boolean;
 }
 
-const CheckInboxDialog = ({ email }: Props) => {
+const CheckInboxDialog = ({ email, isLogin }: Props) => {
   const { setModalOpen } = useContext(ModalContext);
+
   return (
     <div className="grid place-items-center justify-center h-full relative">
       <div className="flex flex-col justify-center gap-7 mt-20">
         <h2 className="serif text-black/95 text-xl mt-10">Check your inbox.</h2>
-        <p className="text-center text-base max-w-[316px]">
-          Click the link we sent to {email} to complete your account set-up.
-        </p>
+        {isLogin ? (
+          <p className="text-center text-base max-w-[316px]">
+            Click the link we sent to {email} to sign in.
+          </p>
+        ) : (
+          <p className="text-center text-base max-w-[316px]">
+            Click the link we sent to {email} to complete your account set-up.
+          </p>
+        )}
       </div>
       <button
         className="text-white text-center text-sm bg-black/90 hover:bg-black rounded-full px-7 py-3.5"

@@ -4,6 +4,7 @@ import { ReactNode, useState } from 'react';
 
 export function useModal() {
   const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
+  const [isDialog, setIsDialog] = useState<Boolean>(true);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
 
   const setModalOpen = (isOpen: Boolean, content?: ReactNode) => {
@@ -11,5 +12,5 @@ export function useModal() {
     if (content) setModalContent(content);
   };
 
-  return { isModalOpen, setModalOpen, modalContent };
+  return { isModalOpen, setModalOpen, modalContent, isDialog, setIsDialog };
 }

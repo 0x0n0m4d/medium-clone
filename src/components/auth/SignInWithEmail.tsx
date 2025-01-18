@@ -1,10 +1,7 @@
-import { useContext } from 'react';
 import AuthenticationForm from '../forms/AuthenticationForm';
-import ModalContext from '../modals/ModalContext';
 import SignInDialog from './SignInDialog';
 
 const SignInWithEmail = () => {
-  const { setModalOpen } = useContext(ModalContext);
   return (
     <div className="grid items-center justify-center h-full">
       <div className="flex flex-col justify-center gap-7 mt-32">
@@ -16,9 +13,9 @@ const SignInWithEmail = () => {
       </div>
       <div className="mb-28">
         <AuthenticationForm
+          isLogin={true}
           onSubmit={() => {}}
-          id="sign-in-email"
-          onClick={() => setModalOpen(true, <SignInDialog />)}
+          element={<SignInDialog />}
         />
       </div>
     </div>

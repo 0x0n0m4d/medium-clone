@@ -5,13 +5,16 @@ import OpenModalButton from '../components/modals/OpenModalButton';
 
 it('should open modal when button is clicked', async () => {
   const mockSetModalOpen = jest.fn();
+  const mockSetIsDialog = jest.fn();
 
   render(
     <ModalContext.Provider
       value={{
         setModalOpen: mockSetModalOpen,
+        setIsDialog: mockSetIsDialog,
         modalContent: null,
-        isModalOpen: false
+        isModalOpen: false,
+        isDialog: true
       }}
     >
       <OpenModalButton element={<div>Content...</div>}>
