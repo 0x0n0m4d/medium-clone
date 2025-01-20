@@ -10,11 +10,7 @@ const SignUpWithEmail = () => {
           Enter your email address to create an account.
         </p>
       </div>
-      <AuthenticationForm
-        isLogin={false}
-        onSubmit={() => {}}
-        element={<SignUpDialog />}
-      />
+      <AuthenticationForm isLogin={false} element={<SignUpDialog />} />
       <p className="text-sm font-light text-black/60 max-w-[324px] mb-28 mt-5">
         This site is protected by reCAPTCHA Enterprise and the{' '}
         <span className="underline cursor-pointer">Google Privacy Policy</span>{' '}

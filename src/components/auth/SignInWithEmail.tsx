@@ -12,11 +12,7 @@ const SignInWithEmail = () => {
         </p>
       </div>
       <div className="mb-28">
-        <AuthenticationForm
-          isLogin={true}
-          onSubmit={() => {}}
-          element={<SignInDialog />}
-        />
+        <AuthenticationForm isLogin={true} element={<SignInDialog />} />
       </div>
     </div>
   );

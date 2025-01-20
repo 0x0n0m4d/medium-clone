@@ -7,7 +7,6 @@ import {
   Section,
   Text
 } from '@react-email/components';
-import Logo from './Logo';
 
 interface Props {
   token: string;
@@ -30,37 +29,39 @@ const EmailTemplate = ({ token, isLogin }: Props) => {
           "-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Ubuntu','Open Sans','Helvetica Neue',sans-serif",
         width: '100%',
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
+        flexDirection: 'column'
       }}
     >
       <Container
+        align="center"
         style={{
           minWidth: '700px',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
           padding: '20px 24px'
         }}
       >
         <Section
+          align="center"
           style={{
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'start',
-            padding: '0px 58px'
+            padding: '0px 50px'
           }}
         >
-          <Logo />
+          <img
+            src="https://ci3.googleusercontent.com/meips/ADKq_NaV-wYo62Iy-VQk6N2iuSvGM0S22O2ZGkgmsspgV7HYoT523VWAKeD0VajVrtldsb8TuzzL-VbTZ-XuQh6uJ3bs7j7FZTkEre8fd2x6-qwmZCuOw9uAcvsYmmiT=s0-d-e1-ft#https://cdn-images-1.medium.com/proxy/1*1p2ITOyu0USn8aiamoqKJA@2x.jpeg"
+            alt="Medium logo"
+            style={{ height: '91px', width: '121px' }}
+          />
         </Section>
         <Section
+          align="center"
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'start',
-            marginTop: '50px'
+            marginTop: '50px',
+            padding: '0px 50px'
           }}
         >
           <Heading
@@ -70,7 +71,8 @@ const EmailTemplate = ({ token, isLogin }: Props) => {
               fontSize: '28px',
               textAlign: 'start',
               color: '#333333',
-              letterSpacing: '2px'
+              letterSpacing: '2px',
+              WebkitTextStroke: '1px white'
             }}
           >
             Your login link
@@ -96,7 +98,7 @@ const EmailTemplate = ({ token, isLogin }: Props) => {
               fontSize: '14px',
               color: '#ffffff',
               textAlign: 'center',
-              backgroundColor: 'var(--primary)',
+              backgroundColor: '#1A8917',
               borderRadius: '9999px',
               margin: '10px 0px'
             }}
@@ -114,7 +116,12 @@ const EmailTemplate = ({ token, isLogin }: Props) => {
             If the button above doesn’t work, paste this link into your web
             browser:
             <br />
-            <span className="underline">{url}</span>
+            <a
+              href={url}
+              style={{ textDecoration: 'underline', color: '#333333' }}
+            >
+              {url}
+            </a>
           </Text>
           <Text
             className="serif text-md text-start text-black/40"
@@ -138,11 +145,14 @@ const EmailTemplate = ({ token, isLogin }: Props) => {
           }}
         />
         <Section
+          align="center"
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center'
+            width: '100%',
+            minWidth: '556px',
+            textAlign: 'center',
+            padding: '0px 50px'
           }}
         >
           <Text
@@ -156,69 +166,56 @@ const EmailTemplate = ({ token, isLogin }: Props) => {
             Sent by{' '}
             <a
               href={`${process.env.NEXT_PUBLIC_URL}`}
-              style={{ textDecoration: 'underline' }}
+              style={{ textDecoration: 'underline', color: '#333333' }}
             >
               Medium
             </a>{' '}
             · Medium, 548 Market St, PMB 42061, San Francisco, CA 94104
           </Text>
-          <ul
+          <div
             style={{
               display: 'flex',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
+              textAlign: 'center',
               fontSize: '12px',
-              color: '#333333',
               lineHeight: '4px',
-              gap: '0px 5px'
+              padding: '0px 50px'
             }}
           >
-            <li>
-              <a
-                href={`${process.env.NEXT_PUBLIC_URL}`}
-                style={{ textDecoration: 'underline' }}
-              >
-                Email Settings
-              </a>
-            </li>
-            <li>·</li>
-            <li>
-              <a
-                href={`${process.env.NEXT_PUBLIC_URL}`}
-                style={{ textDecoration: 'underline' }}
-              >
-                Careers
-              </a>
-            </li>
-            <li>·</li>
-            <li>
-              <a
-                href={`${process.env.NEXT_PUBLIC_URL}`}
-                style={{ textDecoration: 'underline' }}
-              >
-                Help Center
-              </a>
-            </li>
-            <li>·</li>
-            <li>
-              <a
-                href={`${process.env.NEXT_PUBLIC_URL}`}
-                style={{ textDecoration: 'underline' }}
-              >
-                Privacy Policy
-              </a>
-            </li>
-            <li>·</li>
-            <li>
-              <a
-                href={`${process.env.NEXT_PUBLIC_URL}`}
-                style={{ textDecoration: 'underline' }}
-              >
-                Terms of service
-              </a>
-            </li>
-          </ul>
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}`}
+              style={{ textDecoration: 'underline', color: '#333333' }}
+            >
+              Email Settings
+            </a>
+            <span style={{ margin: '0px 4px' }}>·</span>
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}`}
+              style={{ textDecoration: 'underline', color: '#333333' }}
+            >
+              Careers
+            </a>
+            <span style={{ margin: '0px 4px' }}>·</span>
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}`}
+              style={{ textDecoration: 'underline', color: '#333333' }}
+            >
+              Help Center
+            </a>
+            <span style={{ margin: '0px 4px' }}>·</span>
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}`}
+              style={{ textDecoration: 'underline', color: '#333333' }}
+            >
+              Privacy Policy
+            </a>
+            <span style={{ margin: '0px 4px' }}>·</span>
+            <a
+              href={`${process.env.NEXT_PUBLIC_URL}`}
+              style={{ textDecoration: 'underline', color: '#333333' }}
+            >
+              Terms of service
+            </a>
+          </div>
         </Section>
       </Container>
     </Html>
