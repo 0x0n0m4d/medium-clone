@@ -6,6 +6,7 @@ import ModalContext from '../components/modals/ModalContext';
 
 describe('close modal', () => {
   const setModalOpen = jest.fn();
+  const setIsDialog = jest.fn();
 
   it('should close modal when close modal button is clicked', async () => {
     render(
@@ -13,6 +14,8 @@ describe('close modal', () => {
         value={{
           setModalOpen,
           isModalOpen: true,
+          setIsDialog,
+          isDialog: true,
           modalContent: <div>content</div>
         }}
       >
@@ -32,6 +35,8 @@ describe('close modal', () => {
       <ModalContext.Provider
         value={{
           setModalOpen,
+          setIsDialog,
+          isDialog: true,
           isModalOpen: true,
           modalContent: <div>content</div>
         }}
@@ -51,6 +56,8 @@ describe('close modal', () => {
         value={{
           setModalOpen,
           isModalOpen: true,
+          setIsDialog,
+          isDialog: true,
           modalContent: <div>( ._.) 200 OK</div>
         }}
       >
@@ -67,6 +74,8 @@ describe('close modal', () => {
         value={{
           setModalOpen,
           isModalOpen: false,
+          setIsDialog,
+          isDialog: true,
           modalContent: <div>( ._.) 404 Not Found!</div>
         }}
       >
