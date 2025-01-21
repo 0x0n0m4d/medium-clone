@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 import EmailTemplate from '../components/EmailTemplate';
 import { EmailProps } from '../interfaces/user.interface';
+import { createNewToken } from '../lib/utils';
 
 export async function sendMailAction({
   email,
@@ -12,7 +13,7 @@ export async function sendMailAction({
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    const token = '';
+    const token = await createNewToken(email);
 
     await resend.emails.send({
       from: 'noreply@resend.dev',
