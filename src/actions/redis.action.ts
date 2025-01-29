@@ -11,10 +11,12 @@ export async function getTempTokenData(
   token: string
 ): Promise<GetTempUserDataType> {
   try {
-    const data = await redis.get(token, (_, redisData) => {
+    const data = await redis.getBuffer(token, (_, redisData) => {
       return redisData;
     });
-    return JSON.parse(data!);
+    if (!data) return null;
+
+    return JSON.parse(Buffer.from(data).toString('utf-8'));
   } catch (error) {
     console.log('[ERROR_GET_TEMP_TOKEN_DATA]', error);
     return undefined;
@@ -38,7 +40,12 @@ export async function storeTempTokenData({
       expirationTime: new Date().setDate(new Date().getHours() + 2)
     };
 
-    await redis.set(token, JSON.stringify(data), 'EX', 60 * (60 * 24));
+    await redis.set(
+      token,
+      Buffer.from(JSON.stringify(data)),
+      'EX',
+      60 * (60 * 24)
+    );
 
     return true;
   } catch (error) {
