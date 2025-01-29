@@ -1,4 +1,4 @@
-import { GetTempUserDataProps } from '../interfaces/redis.interface';
+import { GetTempUserDataProps } from '@/interfaces/redis.interface';
 
 export type GetTempUserDataType = GetTempUserDataProps | undefined | null;
 

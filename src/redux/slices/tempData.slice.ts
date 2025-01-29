@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { SendMailProps } from '@/src/interfaces/user.interface';
-import { GetTempUserDataType } from '@/src/types/redis.type';
+import { SendMailProps } from '@/interfaces/user.interface';
+import { GetTempUserDataType } from '@/types/redis.type';
 
 interface TempDataProps {
   isLoading: boolean;

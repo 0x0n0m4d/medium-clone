@@ -2,7 +2,7 @@
 
 import { ReactNode, useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { saveTempData } from '@/src/redux/slices/tempData.slice';
+import { saveTempData } from '@/redux/slices/tempData.slice';
 import CheckInboxDialog from '../auth/CheckInboxDialog';
 import TokenErrorDialog from '../auth/TokenErrorDialog';
 import ModalContext from '../modals/ModalContext';

@@ -2,9 +2,9 @@
 
 import { useContext, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import SignInDialog from '@/src/components/auth/SignInDialog';
-import SignUpDialog from '@/src/components/auth/SignUpDialog';
-import ModalContext from '@/src/components/modals/ModalContext';
+import SignInDialog from '@/components/auth/SignInDialog';
+import SignUpDialog from '@/components/auth/SignUpDialog';
+import ModalContext from '@/components/modals/ModalContext';
 
 const Page = () => {
   const { setModalOpen, setIsDialog } = useContext(ModalContext);

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import Header from '../components/header/Header';
-import Footer from '../components/home/Footer';
-import Hero from '../components/home/Hero';
+import Header from '@/components/header/Header';
+import Footer from '@/components/home/Footer';
+import Hero from '@/components/home/Hero';
 
 export const metadata: Metadata = {
   title: 'Medium: Read and write stories',

@@ -1,8 +1,8 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import EmailCallback from '@/src/components/auth/EmailCallback';
-import Loading from '@/src/components/Loading';
+import EmailCallback from '@/components/auth/EmailCallback';
+import Loading from '@/components/Loading';
 
 const Page = () => {
   const searchParams = useSearchParams();

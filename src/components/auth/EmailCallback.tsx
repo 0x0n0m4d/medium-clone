@@ -1,8 +1,8 @@
 import { ReactNode, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { redirect } from 'next/navigation';
-import { fetchTempData } from '@/src/redux/slices/tempData.slice';
-import { AppDispatch } from '@/src/redux/store';
+import { fetchTempData } from '@/redux/slices/tempData.slice';
+import { AppDispatch } from '@/redux/store';
 import Loading from '../Loading';
 import CreateAccountPage from './CreateAccountPage';
 import ExpiredEmailDialog from './ExpiredEmailDialog';

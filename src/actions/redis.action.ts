@@ -1,11 +1,8 @@
 'use server';
 
-import { StoreTempUserDataProps } from '../interfaces/redis.interface';
-import redis from '../lib/redis';
-import {
-  GetTempUserDataType,
-  StoreTempUserDataType
-} from '../types/redis.type';
+import { StoreTempUserDataProps } from '@/interfaces/redis.interface';
+import redis from '@/lib/redis';
+import { GetTempUserDataType, StoreTempUserDataType } from '@/types/redis.type';
 
 export async function getTempTokenData(
   token: string
