@@ -1,7 +1,8 @@
 'use client';
 
 import { ReactNode, useContext, useState } from 'react';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { saveTempData } from '@/src/redux/slices/tempData.slice';
 import CheckInboxDialog from '../auth/CheckInboxDialog';
 import TokenErrorDialog from '../auth/TokenErrorDialog';
 import ModalContext from '../modals/ModalContext';
@@ -13,29 +14,14 @@ interface Props {
 }
 
 const AuthenticationForm = ({ isLogin, element }: Props) => {
+  const dispatch = useDispatch<any>();
   const { setModalOpen } = useContext(ModalContext);
   const [email, setEmail] = useState('');
   const [isPending, setIsPending] = useState(false);
 
-  const handleSubmit = async (): Promise<number> => {
-    const res = await axios
-      .post('/api/auth', {
-        email: email,
-        operation: isLogin ? 'login' : 'register'
-      })
-      .then(function () {
-        return new Response('Email sent succenssfully', {
-          status: 200
-        });
-      })
-      .catch(function (error) {
-        console.log('[ERROR_AUTH_POST_REQUEST]', error);
-        return new Response('Email sent succenssfully', {
-          status: 400
-        });
-      });
-
-    return res.status;
+  const handleSubmit = async () => {
+    const data = await dispatch(saveTempData({ email, isLogin }));
+    return data;
   };
 
   return (
@@ -53,14 +39,14 @@ const AuthenticationForm = ({ isLogin, element }: Props) => {
         />
       </div>
       <button
-        className="w-[226px] text-white text-sm py-4 px-2.5 bg-black/90 hover:bg-black rounded-full"
+        className="w-[226px] text-white text-sm py-4 px-2.5 bg-black/90 hover:bg-black disabled:bg-black/70 rounded-full"
         onClick={e => {
           e.preventDefault();
           setIsPending(true);
 
           handleSubmit()
-            .then(num => {
-              if (num === 200) {
+            .then(data => {
+              if (data) {
                 setModalOpen(
                   true,
                   <CheckInboxDialog email={email} isLogin={isLogin} />

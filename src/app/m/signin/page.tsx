@@ -10,16 +10,16 @@ const Page = () => {
   const { setModalOpen, setIsDialog } = useContext(ModalContext);
   const searchParams = useSearchParams();
 
-  const isSignup = searchParams.get('operation') === 'register';
+  const isLogin = searchParams.get('operation') !== 'register';
 
   useEffect(() => {
     setIsDialog(false);
-    if (isSignup) {
+    if (isLogin) {
       setModalOpen(true, <SignUpDialog />);
     } else {
       setModalOpen(true, <SignInDialog />);
     }
-  }, [isSignup]);
+  }, [isLogin]);
 
   return <div className="bg-white" />;
 };

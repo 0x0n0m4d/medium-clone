@@ -3,6 +3,7 @@ version: '3.3'
 services:
   postgres:
     image: postgres:17.2
+    hostname: postgres
     user: postgres
     environment:
       POSTGRES_DB: postgres
@@ -22,6 +23,19 @@ services:
         limits:
           cpus: '0.4'
           memory: '1.5GB'
+
+  redis:
+    image: redis:7.4.2
+    hostname: redis
+    command: redis-server --save "" --appendonly no --maxclients 20000
+    ports:
+      - "6379:6379"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '0.3GB'
+
 
 networks:
   default:

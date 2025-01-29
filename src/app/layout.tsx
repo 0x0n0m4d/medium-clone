@@ -2,9 +2,11 @@
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './globals.css';
+import { Provider } from 'react-redux';
 import Modal from '../components/modals/Modal';
 import ModalContext from '../components/modals/ModalContext';
 import { useModal } from '../hooks/useModal';
+import store from '../redux/store';
 
 export default function RootLayout({
   children
@@ -16,18 +18,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ModalContext.Provider
-          value={{
-            modalContent,
-            isModalOpen,
-            setModalOpen,
-            isDialog,
-            setIsDialog
-          }}
-        >
-          <Modal />
-          {children}
-        </ModalContext.Provider>
+        <Provider store={store}>
+          <ModalContext.Provider
+            value={{
+              modalContent,
+              isModalOpen,
+              setModalOpen,
+              isDialog,
+              setIsDialog
+            }}
+          >
+            <Modal />
+            {children}
+          </ModalContext.Provider>
+        </Provider>
       </body>
     </html>
   );
