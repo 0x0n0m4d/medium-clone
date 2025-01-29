@@ -1,10 +1,7 @@
 import { NextRequest } from 'next/server';
-import {
-  getTempTokenData,
-  storeTempTokenData
-} from '@/src/actions/redis.action';
-import { sendMailAction } from '@/src/actions/user.action';
-import { generateNewHash } from '@/src/lib/utils';
+import { getTempTokenData, storeTempTokenData } from '@/actions/redis.action';
+import { sendMailAction } from '@/actions/user.action';
+import { generateNewHash } from '@/lib/utils';
 
 export async function GET(req: NextRequest) {
   try {
