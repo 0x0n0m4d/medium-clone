@@ -3,6 +3,7 @@
 import { ReactNode, useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveTempData } from '@/redux/slices/tempData.slice';
+import { AppDispatch } from '@/redux/store';
 import CheckInboxDialog from '../auth/CheckInboxDialog';
 import TokenErrorDialog from '../auth/TokenErrorDialog';
 import ModalContext from '../modals/ModalContext';
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const AuthenticationForm = ({ isLogin, element }: Props) => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useDispatch<AppDispatch>();
   const { setModalOpen } = useContext(ModalContext);
   const [email, setEmail] = useState('');
   const [isPending, setIsPending] = useState(false);
@@ -25,7 +26,30 @@ const AuthenticationForm = ({ isLogin, element }: Props) => {
   };
 
   return (
-    <form className="flex flex-col items-center gap-2">
+    <form
+      className="flex flex-col items-center gap-2"
+      onSubmit={e => {
+        e.preventDefault();
+        setIsPending(true);
+
+        handleSubmit()
+          .then(data => {
+            if (data) {
+              setModalOpen(
+                true,
+                <CheckInboxDialog email={email} isLogin={isLogin} />
+              );
+            } else {
+              setModalOpen(true, <TokenErrorDialog isLogin={isLogin} />);
+            }
+          })
+          .catch(error => {
+            console.log('[ERROR_SEND_MAIL_ACTION]', error);
+            setModalOpen(true, <TokenErrorDialog isLogin={isLogin} />);
+          })
+          .finally(() => setIsPending(false));
+      }}
+    >
       <div className="flex flex-col items-center gap-3 mt-10 mb-10">
         <label className="text-sm leading-[20px] text-center text-black/75">
           Your email
@@ -40,27 +64,6 @@ const AuthenticationForm = ({ isLogin, element }: Props) => {
       </div>
       <button
         className="w-[226px] text-white text-sm py-4 px-2.5 bg-black/90 hover:bg-black disabled:bg-black/70 rounded-full"
-        onClick={e => {
-          e.preventDefault();
-          setIsPending(true);
-
-          handleSubmit()
-            .then(data => {
-              if (data) {
-                setModalOpen(
-                  true,
-                  <CheckInboxDialog email={email} isLogin={isLogin} />
-                );
-              } else {
-                setModalOpen(true, <TokenErrorDialog isLogin={isLogin} />);
-              }
-            })
-            .catch(error => {
-              console.log('[ERROR_SEND_MAIL_ACTION]', error);
-              setModalOpen(true, <TokenErrorDialog isLogin={isLogin} />);
-            })
-            .finally(() => setIsPending(false));
-        }}
         disabled={isPending}
       >
         Continue
