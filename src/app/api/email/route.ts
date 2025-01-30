@@ -8,7 +8,10 @@ export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams;
     const token = searchParams.get('token');
 
-    if (!token) throw new Error('token is required');
+    if (!token)
+      return new Response('Missing fields', {
+        status: 400
+      });
 
     const data = await getTempTokenData(token);
 
@@ -20,8 +23,9 @@ export async function GET(req: NextRequest) {
       });
     }
   } catch (error) {
-    return new Response(undefined, {
-      status: 400
+    console.log('[ERROR_EMAIL_GET_REQUEST]', error);
+    return new Response('Something went wrong', {
+      status: 500
     });
   }
 }
@@ -32,18 +36,34 @@ export async function POST(request: Request) {
     const operation = data.operation!;
     const email = data.email!;
 
-    if (operation != 'register' && operation != 'login')
-      throw new Error('wrong type of operation');
+    if (!email || (operation != 'register' && operation != 'login'))
+      return new Response('Bad request', {
+        status: 400
+      });
 
     const token = generateNewHash(email, 13);
 
-    await storeTempTokenData({ token, email });
-    await sendMailAction({ token, email, isLogin: operation === 'login' });
+    const redisRes = await storeTempTokenData({ token, email });
+    if (!redisRes)
+      return new Response('Failed to send email', {
+        status: 500
+      });
+
+    const mailRes = await sendMailAction({
+      token,
+      email,
+      isLogin: operation === 'login'
+    });
+    if (!mailRes)
+      return new Response('Failed to send email', {
+        status: 500
+      });
 
     return new Response('Success');
   } catch (error) {
-    return new Response(`[ERROR_EMAIL_POST_REQUEST] ${error}`, {
-      status: 400
+    console.log('[ERROR_EMAIL_POST_REQUEST]', error);
+    return new Response('Something went wrong', {
+      status: 500
     });
   }
 }
