@@ -16,7 +16,7 @@ export interface SendMailProps {
 }
 
 export interface GetUserDataActionProps {
-  id: number;
+  email: string;
 }
 
 export interface SaveUserDataActionProps {

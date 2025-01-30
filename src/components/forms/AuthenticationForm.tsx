@@ -21,8 +21,8 @@ const AuthenticationForm = ({ isLogin, element }: Props) => {
   const [isPending, setIsPending] = useState(false);
 
   const handleSubmit = async () => {
-    const data = await dispatch(saveTempData({ email, isLogin }));
-    return data;
+    const action = await dispatch(saveTempData({ email, isLogin }));
+    return action.payload;
   };
 
   return (

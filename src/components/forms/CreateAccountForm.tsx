@@ -1,18 +1,40 @@
 'use client';
 
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { saveUserData } from '@/redux/slices/userData.slice';
+import { AppDispatch } from '@/redux/store';
 
 interface Props {
   email: string;
 }
 
 const CreateAccountForm = ({ email }: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
   const [name, setName] = useState('');
+  const [isPending, setIsPending] = useState(false);
+
+  const handleSubmit = async () => {
+    const action = await dispatch(saveUserData({ email, name }));
+    return action;
+  };
 
   return (
     <form
       className="flex flex-col items-center gap-2 mt-16"
-      onSubmit={() => {}}
+      onSubmit={e => {
+        e.preventDefault();
+        setIsPending(false);
+        handleSubmit()
+          .then(data => {
+            if (data) {
+              console.log(data);
+            } else {
+              console.log('O_o');
+            }
+          })
+          .finally(() => setIsPending(false));
+      }}
     >
       <div className="flex flex-col items-center gap-2">
         <label className="text-xs leading-[20px] text-center text-black/50">
@@ -37,7 +59,8 @@ const CreateAccountForm = ({ email }: Props) => {
       </div>
       <button
         type="submit"
-        className="mt-2 text-white text-sm py-3 px-7 bg-black/85 hover:bg-black transition rounded-full"
+        className="mt-2 text-white text-sm py-3 px-7 bg-black/85 hover:bg-black disabled:bg-black/50 transition rounded-full"
+        disabled={isPending}
       >
         Create Account
       </button>

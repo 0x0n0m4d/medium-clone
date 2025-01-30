@@ -14,6 +14,6 @@ model User {
   username    String   @unique @db.VarChar(64)
   isActivated Boolean  @default(true)
   photoUrl    String?
-  bio         String? @db.VarChar(160)
+  bio         String?  @db.VarChar(160)
   pronouns    String[]
 }

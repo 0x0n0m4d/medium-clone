@@ -73,11 +73,11 @@ export async function saveUserDataAction({
 }
 
 export async function getUserDataAction({
-  id
+  email
 }: GetUserDataActionProps): Promise<GetUserDataActionType> {
   try {
     const user = await prisma.user.findUnique({
-      where: { id }
+      where: { email }
     });
 
     if (!user) return undefined;

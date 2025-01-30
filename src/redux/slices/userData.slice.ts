@@ -19,8 +19,8 @@ export const saveUserData = createAsyncThunk(
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_URL}/api/auth/signup`,
       {
-        email,
-        name
+        email: email,
+        name: name
       }
     );
 
