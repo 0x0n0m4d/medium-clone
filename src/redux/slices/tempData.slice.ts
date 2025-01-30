@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '@/app/api/axios';
 import { SendMailProps } from '@/interfaces/user.interface';
 import { GetTempUserDataType } from '@/types/redis.type';
 
@@ -12,7 +12,7 @@ interface TempDataProps {
 export const saveTempData = createAsyncThunk(
   'saveTempData',
   async ({ email, isLogin }: SendMailProps): Promise<any> => {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/email`, {
+    const res = await axios.post('/api/email', {
       email: email,
       operation: isLogin ? 'login' : 'register'
     });
@@ -24,7 +24,7 @@ export const saveTempData = createAsyncThunk(
 export const fetchTempData = createAsyncThunk(
   'fetchTempData',
   async (token: string): Promise<any> => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/email`, {
+    const res = await axios.get('/api/email', {
       params: { token: token }
     });
     return res.data;

@@ -16,13 +16,10 @@ interface UserDataProps {
 export const saveUserData = createAsyncThunk(
   'saveUserData',
   async ({ email, name }: Props): Promise<any> => {
-    const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_URL}/api/auth/signup`,
-      {
-        email: email,
-        name: name
-      }
-    );
+    const res = await axios.post('/api/auth/signup', {
+      email: email,
+      name: name
+    });
 
     return res.data;
   }
