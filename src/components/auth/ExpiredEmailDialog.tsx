@@ -38,7 +38,13 @@ const ExpiredEmailDialog = ({ isLogin }: Props) => {
               Enter the email address associated with your account, and we’ll
               send a new magic link to your inbox.
             </p>
-            <form className="flex flex-col items-center gap-2">
+            <form
+              className="flex flex-col items-center gap-2"
+              onSubmit={e => {
+                e.preventDefault();
+                setHasEmailSent(true);
+              }}
+            >
               <div className="flex flex-col items-center gap-3 mt-10 mb-10">
                 <label className="text-sm leading-[20px] text-center text-black/70">
                   Your email
@@ -51,13 +57,7 @@ const ExpiredEmailDialog = ({ isLogin }: Props) => {
                   required
                 />
               </div>
-              <button
-                onClick={e => {
-                  e.preventDefault();
-                  setHasEmailSent(true);
-                }}
-                className="text-white text-sm py-3 px-7 bg-black/85 hover:bg-black transition rounded-full"
-              >
+              <button className="text-white text-sm py-3 px-7 bg-black/85 hover:bg-black transition rounded-full">
                 Continue
               </button>
             </form>
