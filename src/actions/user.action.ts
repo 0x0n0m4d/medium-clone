@@ -1,9 +1,18 @@
 'use server';
 
 import { Resend } from 'resend';
-import EmailTemplate from '../components/EmailTemplate';
-import { SendMailProps } from '../interfaces/user.interface';
-import { SendMailType } from '../types/user.type';
+import EmailTemplate from '@/components/EmailTemplate';
+import {
+  GetUserDataActionProps,
+  SaveUserDataActionProps,
+  SendMailProps
+} from '@/interfaces/user.interface';
+import prisma from '@/lib/prismadb';
+import {
+  GetUserDataActionType,
+  SaveUserDataActionType,
+  SendMailType
+} from '@/types/user.type';
 
 export async function sendMailAction({
   token,
@@ -36,5 +45,45 @@ export async function sendMailAction({
   } catch (error) {
     console.log('[ERROR_SEND_MAIL_ACTION]', error);
     return undefined;
+  }
+}
+
+export async function saveUserDataAction({
+  email,
+  name
+}: SaveUserDataActionProps): Promise<SaveUserDataActionType> {
+  try {
+    if (!email) throw new Error('email is required');
+
+    const username = '';
+
+    const user = await prisma.user.create({
+      data: {
+        email,
+        username,
+        name
+      }
+    });
+
+    return user;
+  } catch (error) {
+    console.log('[ERROR_SAVE_USER_ACTION]', error);
+    return undefined;
+  }
+}
+
+export async function getUserDataAction({
+  id
+}: GetUserDataActionProps): Promise<GetUserDataActionType> {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id }
+    });
+
+    if (!user) return undefined;
+
+    return user;
+  } catch (error) {
+    console.log('[ERROR_GET_USER_ACTION]', error);
   }
 }
