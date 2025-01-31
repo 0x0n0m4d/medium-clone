@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './globals.css';
 import { Provider } from 'react-redux';
 import Modal from '@/components/modals/Modal';
-import ModalContext from '@/components/modals/ModalContext';
+import ModalContext from '@/contexts/ModalContext';
 import { useModal } from '@/hooks/useModal';
 import store from '@/redux/store';
 

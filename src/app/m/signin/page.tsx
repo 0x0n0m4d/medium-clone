@@ -4,7 +4,7 @@ import { useContext, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import SignInDialog from '@/components/auth/SignInDialog';
 import SignUpDialog from '@/components/auth/SignUpDialog';
-import ModalContext from '@/components/modals/ModalContext';
+import ModalContext from '@/contexts/ModalContext';
 
 const Page = () => {
   const { setModalOpen, setIsDialog } = useContext(ModalContext);

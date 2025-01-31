@@ -1,6 +1,6 @@
 import { User } from '@prisma/client';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '@/app/api/axios';
 
 interface Props {
   email: string;

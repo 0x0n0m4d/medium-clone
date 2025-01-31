@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode, useContext } from 'react';
-import ModalContext from './ModalContext';
+import ModalContext from '@/contexts/ModalContext';
 
 interface Props {
   element: ReactNode;

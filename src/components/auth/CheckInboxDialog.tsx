@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import Image from 'next/image';
-import ModalContext from '../modals/ModalContext';
+import ModalContext from '@/contexts/ModalContext';
 
 interface Props {
   email: string;

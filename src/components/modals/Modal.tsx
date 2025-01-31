@@ -1,7 +1,7 @@
 'use client';
 
 import { useContext } from 'react';
-import ModalContext from './ModalContext';
+import ModalContext from '@/contexts/ModalContext';
 
 const Modal = () => {
   const { isModalOpen, modalContent, setModalOpen, isDialog } =

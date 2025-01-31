@@ -2,11 +2,11 @@
 
 import { ReactNode, useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import ModalContext from '@/contexts/ModalContext';
 import { saveTempData } from '@/redux/slices/tempData.slice';
 import { AppDispatch } from '@/redux/store';
 import CheckInboxDialog from '../auth/CheckInboxDialog';
 import TokenErrorDialog from '../auth/TokenErrorDialog';
-import ModalContext from '../modals/ModalContext';
 import OpenModalButton from '../modals/OpenModalButton';
 
 interface Props {

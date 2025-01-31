@@ -1,8 +1,8 @@
 'use client';
 
 import { useContext } from 'react';
-import ButtonWithIcon from '../../atoms/ButtonWithIcon';
-import ModalContext from '../modals/ModalContext';
+import ButtonWithIcon from '@/atoms/ButtonWithIcon';
+import ModalContext from '@/contexts/ModalContext';
 import AuthenticationDialog from './AuthenticationDialog';
 import SignInWithEmail from './SignInWithEmail';
 
