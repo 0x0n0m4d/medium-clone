@@ -42,8 +42,8 @@ export async function sendMailAction({
       });
 
     return true;
-  } catch (error) {
-    console.log('[ERROR_SEND_MAIL_ACTION]', error);
+  } catch (err) {
+    console.log('[ERROR_SEND_MAIL_ACTION]', err);
     return undefined;
   }
 }
@@ -66,8 +66,8 @@ export async function saveUserDataAction({
     });
 
     return user;
-  } catch (error) {
-    console.log('[ERROR_SAVE_USER_ACTION]', error);
+  } catch (err) {
+    console.log('[ERROR_SAVE_USER_ACTION]', err);
     return undefined;
   }
 }
@@ -83,7 +83,7 @@ export async function getUserDataAction({
     if (!user) return undefined;
 
     return user;
-  } catch (error) {
-    console.log('[ERROR_GET_USER_ACTION]', error);
+  } catch (err) {
+    console.log('[ERROR_GET_USER_ACTION]', err);
   }
 }

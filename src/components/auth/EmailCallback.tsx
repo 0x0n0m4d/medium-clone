@@ -24,7 +24,7 @@ const EmailCallback = ({ token, isLogin }: Props) => {
     if (tempData.error) {
       return <TokenErrorDialog isLogin={isLogin} />;
     }
-    const currentDate = new Date().setDate(new Date().getHours());
+    const currentDate = new Date();
     if (tempData.data!.expirationTime < currentDate) {
       return <ExpiredEmailDialog isLogin={isLogin} />;
     }

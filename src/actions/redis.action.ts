@@ -14,8 +14,8 @@ export async function getTempTokenData(
     if (!data) return null;
 
     return JSON.parse(Buffer.from(data).toString('utf-8'));
-  } catch (error) {
-    console.log('[ERROR_GET_TEMP_TOKEN_DATA]', error);
+  } catch (err) {
+    console.log('[ERROR_GET_TEMP_TOKEN_DATA]', err);
     return undefined;
   }
 }
@@ -31,22 +31,27 @@ export async function storeTempTokenData({
       }
     });
 
+    const exp = new Date();
+    exp.setHours(exp.getHours() + 2);
+
     const data = {
-      email: email,
+      email,
       alreadyUsed: false,
-      expirationTime: new Date().setDate(new Date().getHours() + 2)
+      exp
     };
 
-    await redis.set(
+    const res = await redis.set(
       token,
       Buffer.from(JSON.stringify(data)),
       'EX',
       60 * (60 * 24)
     );
 
+    if (!res) return false;
+
     return true;
-  } catch (error) {
-    console.log('[ERROR_STORE_TOKEN_IN_REDIS]', error);
+  } catch (err) {
+    console.log('[ERROR_STORE_TOKEN_IN_REDIS]', err);
     return undefined;
   }
 }

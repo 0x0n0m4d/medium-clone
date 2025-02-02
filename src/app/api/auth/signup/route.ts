@@ -20,8 +20,8 @@ export async function POST(req: Request) {
         status: 500
       });
     }
-  } catch (error) {
-    console.log('[ERROR_SIGNUP_POST_REQUEST]', error);
+  } catch (err) {
+    console.log('[ERROR_SIGNUP_POST_REQUEST]', err);
     return new Response('Something went wrong', {
       status: 500
     });

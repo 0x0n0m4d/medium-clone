@@ -22,17 +22,17 @@ export async function GET(req: NextRequest) {
         status: 204
       });
     }
-  } catch (error) {
-    console.log('[ERROR_EMAIL_GET_REQUEST]', error);
+  } catch (err) {
+    console.log('[ERROR_EMAIL_GET_REQUEST]', err);
     return new Response('Something went wrong', {
       status: 500
     });
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const data = await request.json();
+    const data = await req.json();
     const operation = data.operation!;
     const email = data.email!;
 
@@ -60,8 +60,8 @@ export async function POST(request: Request) {
       });
 
     return new Response('Success');
-  } catch (error) {
-    console.log('[ERROR_EMAIL_POST_REQUEST]', error);
+  } catch (err) {
+    console.log('[ERROR_EMAIL_POST_REQUEST]', err);
     return new Response('Something went wrong', {
       status: 500
     });
