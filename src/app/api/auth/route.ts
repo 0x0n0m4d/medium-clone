@@ -20,8 +20,8 @@ export async function GET(req: NextRequest) {
         status: 204
       });
     }
-  } catch (error) {
-    console.log('[ERROR_AUTH_GET_REQUEST]', error);
+  } catch (err) {
+    console.log('[ERROR_AUTH_GET_REQUEST]', err);
     return new Response('Something went wrong', {
       status: 500
     });
