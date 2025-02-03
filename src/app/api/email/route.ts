@@ -1,5 +1,8 @@
 import { NextRequest } from 'next/server';
-import { getTempTokenData, storeTempTokenData } from '@/actions/redis.action';
+import {
+  getTempTokenDataAction,
+  storeTempTokenDataAction
+} from '@/actions/redis.action';
 import { sendMailAction } from '@/actions/user.action';
 import { generateNewHash } from '@/lib/utils';
 
@@ -13,7 +16,7 @@ export async function GET(req: NextRequest) {
         status: 400
       });
 
-    const data = await getTempTokenData(token);
+    const data = await getTempTokenDataAction(token);
 
     if (data) {
       return new Response(JSON.stringify(data));
@@ -43,7 +46,7 @@ export async function POST(req: Request) {
 
     const token = generateNewHash(email, 13);
 
-    const redisRes = await storeTempTokenData({ token, email });
+    const redisRes = await storeTempTokenDataAction({ token, email });
     if (!redisRes)
       return new Response('Failed to send email', {
         status: 500

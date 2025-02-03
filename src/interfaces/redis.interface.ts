@@ -1,3 +1,5 @@
+import { User } from '@prisma/client';
+
 export interface GetTempUserDataProps {
   email: string;
   alreadyUsed: boolean;
@@ -7,4 +9,10 @@ export interface GetTempUserDataProps {
 export interface StoreTempUserDataProps {
   token: string;
   email: string;
+}
+
+export interface StoreUserSessionProps {
+  ip: string;
+  userAgent: string;
+  userData: User;
 }

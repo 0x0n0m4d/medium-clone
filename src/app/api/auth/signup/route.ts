@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     const res = await saveUserDataAction({ email, name });
 
     if (res) {
-      return new Response('User registered successfully');
+      return new Response(JSON.stringify(res));
     } else {
       return new Response('Failed to register new user', {
         status: 500

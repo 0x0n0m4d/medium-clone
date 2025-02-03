@@ -1,26 +1,20 @@
 'use server';
 
-import { StoreTempUserDataProps } from '@/interfaces/redis.interface';
+import {
+  StoreTempUserDataProps,
+  StoreUserSessionProps
+} from '@/interfaces/redis.interface';
+import { encryptJWT } from '@/lib/jwt';
 import redis from '@/lib/redis';
-import { GetTempUserDataType, StoreTempUserDataType } from '@/types/redis.type';
+import { generateNewHash } from '@/lib/utils';
+import {
+  GetTempUserDataType,
+  GetUserSessionType,
+  StoreTempUserDataType,
+  StoreUserSessionType
+} from '@/types/redis.type';
 
-export async function getTempTokenData(
-  token: string
-): Promise<GetTempUserDataType> {
-  try {
-    const data = await redis.getBuffer(token, (_, redisData) => {
-      return redisData;
-    });
-    if (!data) return null;
-
-    return JSON.parse(Buffer.from(data).toString('utf-8'));
-  } catch (err) {
-    console.log('[ERROR_GET_TEMP_TOKEN_DATA]', err);
-    return undefined;
-  }
-}
-
-export async function storeTempTokenData({
+export async function storeTempTokenDataAction({
   token,
   email
 }: StoreTempUserDataProps): Promise<StoreTempUserDataType> {
@@ -52,6 +46,72 @@ export async function storeTempTokenData({
     return true;
   } catch (err) {
     console.log('[ERROR_STORE_TOKEN_IN_REDIS]', err);
-    return undefined;
+  }
+}
+
+export async function getTempTokenDataAction(
+  token: string
+): Promise<GetTempUserDataType> {
+  try {
+    const data = await redis.getBuffer(token, (_, redisData) => {
+      return redisData;
+    });
+    if (!data) return null;
+
+    return JSON.parse(Buffer.from(data).toString('utf-8'));
+  } catch (err) {
+    console.log('[ERROR_GET_TEMP_TOKEN_DATA]', err);
+  }
+}
+
+export async function storeUserSessionAction({
+  ip,
+  userAgent,
+  userData
+}: StoreUserSessionProps): Promise<StoreUserSessionType> {
+  try {
+    if (!ip) throw new Error('ip is required');
+    if (!userAgent) throw new Error('userAgent is required');
+    if (!userData) throw new Error('userData is required');
+
+    const token = generateNewHash(userData.email, 32);
+    const exp = new Date();
+    exp.setHours(exp.getHours() + 24);
+    const jwt = await encryptJWT({ token, email: userData.email, exp });
+
+    const data = {
+      ip,
+      userAgent,
+      jwt,
+      userData
+    };
+
+    const res = await redis.set(
+      token,
+      Buffer.from(JSON.stringify(data)),
+      'EX',
+      60 * (60 * 24)
+    );
+
+    if (!res) return undefined;
+
+    return jwt;
+  } catch (err) {
+    console.log('[ERROR_STORE_USER_SESSION_DATA]', err);
+  }
+}
+
+export async function getUserSessionAction(
+  token: string
+): Promise<GetUserSessionType> {
+  try {
+    const data = await redis.getBuffer(token, (_, redisData) => {
+      return redisData;
+    });
+    if (!data) return null;
+
+    return JSON.parse(Buffer.from(data).toString('utf-8'));
+  } catch (err) {
+    console.log('[ERROR_GET_USER_SESSION_DATA]', err);
   }
 }
