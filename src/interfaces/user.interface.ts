@@ -1,12 +1,12 @@
 export interface User {
-  id?: number;
+  id: number;
   email: string;
   name: string;
   username: string;
-  photoUrl?: string | null;
-  isActivated?: boolean;
-  bio?: string | null;
-  pronouns?: string[];
+  photoUrl: string | null;
+  isActivated: boolean;
+  bio: string | null;
+  pronouns: string[];
 }
 
 export interface SendMailProps {
