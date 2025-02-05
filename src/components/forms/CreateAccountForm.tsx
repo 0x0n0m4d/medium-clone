@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
+import { redirect } from 'next/navigation';
 import { saveUserData } from '@/redux/slices/userData.slice';
 import { AppDispatch } from '@/redux/store';
 
@@ -13,10 +15,11 @@ const CreateAccountForm = ({ email }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const [name, setName] = useState('');
   const [isPending, setIsPending] = useState(false);
+  const [_, setCookies] = useCookies();
 
   const handleSubmit = async () => {
     const action = await dispatch(saveUserData({ email, name }));
-    return action;
+    return action.payload;
   };
 
   return (
@@ -24,16 +27,22 @@ const CreateAccountForm = ({ email }: Props) => {
       className="flex flex-col items-center gap-2 mt-16"
       onSubmit={e => {
         e.preventDefault();
-        setIsPending(false);
+        setIsPending(true);
+
         handleSubmit()
-          .then(data => {
-            if (data) {
-              console.log(data);
-            } else {
-              console.log('O_o');
-            }
+          .then(jwt => {
+            const exp = new Date();
+            exp.setHours(exp.getHours() + 24);
+            setCookies('access_token', jwt, {
+              path: '/',
+              sameSite: 'lax',
+              expires: exp
+            });
           })
-          .finally(() => setIsPending(false));
+          .finally(() => {
+            setIsPending(false);
+            redirect('/');
+          });
       }}
     >
       <div className="flex flex-col items-center gap-2">
@@ -59,7 +68,7 @@ const CreateAccountForm = ({ email }: Props) => {
       </div>
       <button
         type="submit"
-        className="mt-2 text-white text-sm py-3 px-7 bg-black/85 hover:bg-black disabled:bg-black/50 transition rounded-full"
+        className="mt-2 text-white text-sm py-3 px-7 bg-black/90 hover:bg-black disabled:bg-black/50 transition rounded-full"
         disabled={isPending}
       >
         Create Account

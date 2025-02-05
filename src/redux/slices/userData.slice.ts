@@ -7,9 +7,16 @@ interface Props {
   name: string;
 }
 
+interface Something {
+  user: User | null;
+  jwt: string | null;
+}
+
+type AnotherSome = Something | null;
+
 interface UserDataProps {
   isLoading: boolean;
-  data: User | null;
+  data: AnotherSome;
   error: boolean;
 }
 
@@ -42,7 +49,7 @@ const userData = createSlice({
     });
     builder.addCase(
       saveUserData.fulfilled,
-      (state, action: PayloadAction<User>) => {
+      (state, action: PayloadAction<AnotherSome>) => {
         state.isLoading = false;
         state.data = action.payload;
       }
