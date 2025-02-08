@@ -18,14 +18,14 @@ const EmailCallback = ({ token, isLogin }: Props) => {
   const tempData = useSelector((state: any) => state.tempData);
 
   const Content = (): ReactNode => {
-    if (!tempData.data) {
-      return <Loading />;
-    }
     if (tempData.error) {
       return <TokenErrorDialog isLogin={isLogin} />;
     }
+    if (!tempData.data) {
+      return <Loading />;
+    }
     const currentDate = new Date();
-    if (tempData.data!.expirationTime < currentDate) {
+    if (tempData.data?.expirationTime < currentDate) {
       return <ExpiredEmailDialog isLogin={isLogin} />;
     }
 
@@ -35,7 +35,7 @@ const EmailCallback = ({ token, isLogin }: Props) => {
   };
 
   useEffect(() => {
-    if (!tempData.data) {
+    if (!tempData.data && !tempData.isLoading) {
       dispatch(fetchTempData(token));
     }
   }, [tempData, token]);

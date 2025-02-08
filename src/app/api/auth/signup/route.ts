@@ -28,18 +28,18 @@ export async function POST(req: Request) {
         status: 400
       });
 
-    const jwt = await storeUserSessionAction({
+    const session = await storeUserSessionAction({
       ip: userIP,
       userAgent,
       userData: user
     });
 
-    if (!jwt)
+    if (!session)
       return new Response('User session not created', {
         status: 500
       });
 
-    return new Response(jwt);
+    return new Response(JSON.stringify(session));
   } catch (err) {
     console.log('[ERROR_SIGNUP_POST_REQUEST]', err);
     return new Response('Something went wrong', {

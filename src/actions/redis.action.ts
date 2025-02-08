@@ -95,7 +95,7 @@ export async function storeUserSessionAction({
 
     if (!res) return undefined;
 
-    return jwt;
+    return data;
   } catch (err) {
     console.log('[ERROR_STORE_USER_SESSION_DATA]', err);
   }

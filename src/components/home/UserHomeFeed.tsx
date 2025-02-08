@@ -1,5 +1,9 @@
 const UserHomeFeed = () => {
-  return <section>User is logged in</section>;
+  return (
+    <div className="w-full h-full justify-center items-center">
+      User is logged in
+    </div>
+  );
 };
 
 export default UserHomeFeed;

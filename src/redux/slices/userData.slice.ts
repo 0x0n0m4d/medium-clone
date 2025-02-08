@@ -2,30 +2,43 @@ import { User } from '@prisma/client';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from '@/app/api/axios';
 
+interface LoggedUser {
+  ip: string | null;
+  userAgent: string | null;
+  jwt: string | null;
+  userData: User | null;
+}
+
+type LoggedUserType = LoggedUser | null;
+
+interface UserDataProps {
+  isLoading: boolean;
+  data: LoggedUserType;
+  error: boolean;
+}
+
 interface Props {
   email: string;
   name: string;
 }
 
-interface Something {
-  user: User | null;
-  jwt: string | null;
-}
-
-type AnotherSome = Something | null;
-
-interface UserDataProps {
-  isLoading: boolean;
-  data: AnotherSome;
-  error: boolean;
-}
-
-export const saveUserData = createAsyncThunk(
+export const createUserSession = createAsyncThunk(
   'saveUserData',
   async ({ email, name }: Props): Promise<any> => {
     const res = await axios.post('/api/auth/signup', {
       email: email,
       name: name
+    });
+
+    return res.data;
+  }
+);
+
+export const getUserSessionData = createAsyncThunk(
+  'getUserData',
+  async (jwt: string): Promise<any> => {
+    const res = await axios.get('/api/redis', {
+      headers: { Authorization: `${jwt}` }
     });
 
     return res.data;
@@ -43,20 +56,28 @@ const userData = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(saveUserData.pending, state => {
-      state.isLoading = true;
-      state.error = false;
-    });
     builder.addCase(
-      saveUserData.fulfilled,
-      (state, action: PayloadAction<AnotherSome>) => {
-        state.isLoading = false;
-        state.data = action.payload;
+      createUserSession.pending || getUserSessionData.pending,
+      state => {
+        state = { ...state, isLoading: true, error: false };
       }
     );
-    builder.addCase(saveUserData.rejected, state => {
-      state.error = true;
-    });
+    builder.addCase(
+      createUserSession.fulfilled || getUserSessionData.fulfilled,
+      (state, action: PayloadAction<LoggedUserType>) => {
+        state = {
+          ...state,
+          isLoading: false,
+          data: action.payload
+        };
+      }
+    );
+    builder.addCase(
+      createUserSession.rejected || getUserSessionData.rejected,
+      state => {
+        state = { ...initialState, error: true };
+      }
+    );
   }
 });
 

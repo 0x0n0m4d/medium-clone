@@ -1,22 +1,31 @@
 'use client';
 
+import { ReactNode, useContext } from 'react';
 import { useCookies } from 'react-cookie';
-import Header from '../header/Header';
-import Footer from './Footer';
-import Hero from './Hero';
+import AuthContext from '@/contexts/AuthContext';
+import Loading from '../Loading';
+import FrontPage from './FrontPage';
+import UserHomeFeed from './UserHomeFeed';
 
 const Home = () => {
-  const [cookies] = useCookies(['access_token']);
-  const jwt = cookies.access_token;
-  return (
-    <>
-      <Header />
-      <main className="w-full flex justify-center px-16 sm:px-20">
-        <Hero />
-      </main>
-      <Footer />
-    </>
-  );
+  const [cookies, , removeCookie] = useCookies();
+  const { user, isLoading, error } = useContext(AuthContext);
+
+  if (!cookies.access_token) return <FrontPage />;
+
+  const Content = (): ReactNode => {
+    if (error) {
+      removeCookie('access_token');
+      return <FrontPage />;
+    }
+    if (!user && cookies.access_token) {
+      return <Loading />;
+    }
+
+    return <UserHomeFeed />;
+  };
+
+  return <div>{isLoading ? <Loading /> : <Content />}</div>;
 };
 
 export default Home;

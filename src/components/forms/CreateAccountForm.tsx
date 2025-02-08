@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
-import { redirect } from 'next/navigation';
-import { saveUserData } from '@/redux/slices/userData.slice';
+import { useRouter } from 'next/navigation';
+import { createUserSession } from '@/redux/slices/userData.slice';
 import { AppDispatch } from '@/redux/store';
 
 interface Props {
@@ -16,10 +16,11 @@ const CreateAccountForm = ({ email }: Props) => {
   const [name, setName] = useState('');
   const [isPending, setIsPending] = useState(false);
   const [_, setCookies] = useCookies();
+  const route = useRouter();
 
   const handleSubmit = async () => {
-    const action = await dispatch(saveUserData({ email, name }));
-    return action.payload;
+    const action = await dispatch(createUserSession({ email, name }));
+    return action.payload.jwt;
   };
 
   return (
@@ -41,7 +42,7 @@ const CreateAccountForm = ({ email }: Props) => {
           })
           .finally(() => {
             setIsPending(false);
-            redirect('/');
+            route.push('/');
           });
       }}
     >

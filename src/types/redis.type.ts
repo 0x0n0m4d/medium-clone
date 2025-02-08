@@ -9,4 +9,4 @@ export type StoreTempUserDataType = boolean | undefined;
 
 export type GetUserSessionType = StoreUserSessionProps | undefined | null;
 
-export type StoreUserSessionType = string | undefined;
+export type StoreUserSessionType = StoreUserSessionProps | undefined;
