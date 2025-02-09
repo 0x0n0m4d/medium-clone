@@ -22,7 +22,7 @@ const CheckInboxPage = ({ email, isLogin, className }: Props) => {
         </span>
       </Link>
       <div className="min-h-[80px]" />
-      <div className="bg-[#D7EFEE] relative rounded px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col w-[610px] h-[420px] md:w-[910px] md:h-[560px] my-auto">
+      <div className="bg-[#D7EFEE] relative rounded px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col w-[610px] h-[420px] xl:w-[910px] xl:h-[560px] my-auto">
         <div className="grid place-items-center">
           <h2 className="serif text-black/95 text-2xl font-thin">
             Check your inbox
@@ -43,7 +43,7 @@ const CheckInboxPage = ({ email, isLogin, className }: Props) => {
           alt="Inbox Thumb"
           width={780}
           height={244}
-          className="object-contain w-[500px] md:w-[780px] h-[244px]"
+          className="object-contain w-[500px] xl:w-[780px] h-[244px]"
         />
       </div>
     </div>

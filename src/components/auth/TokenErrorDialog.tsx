@@ -17,7 +17,7 @@ const TokenErrorDialog = ({ isLogin }: Props) => {
         </span>
       </Link>
       <div className="min-h-[80px]" />
-      <div className="relative rounded px-20 md:px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col justify-center items-center w-[600px] h-[550px] md:w-[910px] md:h-[560px] my-auto">
+      <div className="relative rounded px-20 xl:px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col justify-center items-center w-[600px] h-[550px] xl:w-[910px] xl:h-[560px] my-auto">
         <div className="grid place-items-center">
           <h2 className="serif text-black/90 text-2xl font-thin">
             Apologies, but something went wrong.

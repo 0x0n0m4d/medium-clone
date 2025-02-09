@@ -17,7 +17,7 @@ const Modal = () => {
         if (isDialog && id === 'modal') setModalOpen(false);
       }}
     >
-      <div className="modal-content-animation relative rounded bg-white px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col w-[600px] sm:w-[678px] h-full sm:h-[695px] my-auto overflow-auto">
+      <div className="modal-content-animation relative rounded bg-white px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col w-[600px] md:w-[678px] h-full md:h-[695px] my-auto overflow-auto">
         {isDialog && (
           <button
             className="thin-icon absolute top-3 right-5 text-black/40 hover:text-black transition text-lg"

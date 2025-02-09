@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Logo from '../Logo';
-import Nav from './Nav';
+import FrontNav from './FrontNav';
 
 const Header = () => {
   return (
@@ -9,7 +9,7 @@ const Header = () => {
         <Link href="/" aria-label="logo">
           <Logo />
         </Link>
-        <Nav />
+        <FrontNav />
       </div>
     </header>
   );

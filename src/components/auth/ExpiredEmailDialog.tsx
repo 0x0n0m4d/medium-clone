@@ -27,7 +27,7 @@ const ExpiredEmailDialog = ({ isLogin }: Props) => {
           </span>
         </Link>
         <div className="min-h-[80px]" />
-        <div className="relative rounded px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col w-[610px] h-[420px] md:w-[910px] md:h-[560px] my-auto">
+        <div className="relative rounded px-11 py-14 shadow-black/15 shadow-[0px_2px_10px] text-center flex flex-col w-[610px] h-[420px] xl:w-[910px] xl:h-[560px] my-auto">
           <div className="grid place-items-center">
             <h2 className="serif text-black/95 text-2xl my-10 font-thin">
               {isLogin

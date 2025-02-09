@@ -6,7 +6,7 @@ const FrontPage = () => {
   return (
     <>
       <Header />
-      <main className="w-full flex justify-center px-16 sm:px-20">
+      <main className="w-full flex justify-center px-16 md:px-20">
         <Hero />
       </main>
       <Footer />
