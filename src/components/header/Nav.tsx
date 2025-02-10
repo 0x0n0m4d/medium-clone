@@ -1,9 +1,9 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import SignInDialog from '../auth/SignInDialog';
 import SignUpDialog from '../auth/SignUpDialog';
 import Logo from '../Logo';
 import OpenModalButton from '../modals/OpenModalButton';
+import AvatarButton from './AvatarButton';
 import SearchBar from './SearchBar';
 
 const Nav = () => {
@@ -108,16 +108,7 @@ const Nav = () => {
             >
               Sign in
             </OpenModalButton>
-            <button className="relative border border-solid border-gray-200 rounded-full">
-              <div className="w-full h-full rounded-full absolute hover:bg-black/10" />
-              <Image
-                src="/assets/default-avatar.png"
-                alt="Avatar"
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-            </button>
+            <AvatarButton />
           </div>
         </div>
       </div>
