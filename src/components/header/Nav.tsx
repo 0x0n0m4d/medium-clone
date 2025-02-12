@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import SignInDialog from '../auth/SignInDialog';
 import SignUpDialog from '../auth/SignUpDialog';
@@ -7,8 +11,25 @@ import AvatarButton from './AvatarButton';
 import SearchBar from './SearchBar';
 
 const Nav = () => {
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, 'change', latest => {
+    const previous = scrollY.getPrevious();
+    if (latest > previous!) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
   return (
-    <nav className="bg-white fixed w-full z-10 px-6 lg:px-10">
+    <motion.nav
+      variants={{ visible: { y: 0 }, hidden: { y: '-100%' } }}
+      animate={hidden ? 'hidden' : 'visible'}
+      transition={{ duration: 0.25, ease: 'easeInOut' }}
+      className="bg-white sticky top-0 w-full z-10 px-6 lg:px-10"
+    >
       <div className="flex flex-col items-center text-xs">
         <div className="lg:hidden flex justify-between items-center w-full flex-grow min-h-[41px] border-b border-solid border-gray-100">
           <Link
@@ -112,7 +133,7 @@ const Nav = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
