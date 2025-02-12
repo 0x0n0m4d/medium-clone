@@ -1,7 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { saveTempData } from '@/redux/slices/tempData.slice';
+import { AppDispatch } from '@/redux/store';
 import Logo from '../Logo';
 import CheckInboxPage from './CheckInboxPage';
 
@@ -10,8 +14,18 @@ interface Props {
 }
 
 const ExpiredEmailDialog = ({ isLogin }: Props) => {
+  const route = useRouter();
+
+  const dispatch = useDispatch<AppDispatch>();
   const [email, setEmail] = useState('');
   const [hasEmailSent, setHasEmailSent] = useState(false);
+  const [isPending, setIsPending] = useState(false);
+
+  const handleSubmit = async () => {
+    const action = await dispatch(saveTempData({ email, isLogin }));
+
+    return action.payload;
+  };
 
   return (
     <>
@@ -42,7 +56,17 @@ const ExpiredEmailDialog = ({ isLogin }: Props) => {
               className="flex flex-col items-center gap-2"
               onSubmit={e => {
                 e.preventDefault();
-                setHasEmailSent(true);
+                setIsPending(true);
+
+                handleSubmit()
+                  .then(() => {
+                    setHasEmailSent(true);
+                  })
+                  .catch(err => {
+                    console.log('[ERROR_SEND_MAIL_ACTION]', err);
+                    route.push('/');
+                  })
+                  .finally(() => setIsPending(false));
               }}
             >
               <div className="flex flex-col items-center gap-3 mt-10 mb-10">
@@ -57,7 +81,10 @@ const ExpiredEmailDialog = ({ isLogin }: Props) => {
                   required
                 />
               </div>
-              <button className="text-white text-sm py-3 px-7 bg-black/85 hover:bg-black transition rounded-full">
+              <button
+                className="text-white text-sm py-3 px-7 bg-black/90 hover:bg-black disabled:bg-black/70 transition rounded-full"
+                disabled={isPending}
+              >
                 Continue
               </button>
             </form>
