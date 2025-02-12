@@ -4,9 +4,10 @@ import Logo from '../Logo';
 
 interface Props {
   email: string;
+  redirectUrl?: string;
 }
 
-const CreateAccountPage = ({ email }: Props) => {
+const CreateAccountPage = ({ email, redirectUrl }: Props) => {
   return (
     <div className="fixed left-0 right-0 top-0 bottom-0 bg-white flex flex-col justify-center items-center overflow-x-hidden overflow-y-auto">
       <Link
@@ -26,7 +27,7 @@ const CreateAccountPage = ({ email }: Props) => {
             Finish creating your account for the full Medium experience.
           </p>
         </div>
-        <CreateAccountForm email={email} />
+        <CreateAccountForm email={email} redirectUrl={redirectUrl} />
       </section>
     </div>
   );

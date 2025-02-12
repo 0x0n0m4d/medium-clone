@@ -11,6 +11,7 @@ export interface User {
 
 export interface SendMailProps {
   token?: string;
+  redirectUrl?: string;
   email: string;
   isLogin: boolean;
 }

@@ -1,7 +1,11 @@
 import AuthenticationForm from '../forms/AuthenticationForm';
 import SignInDialog from './SignInDialog';
 
-const SignInWithEmail = () => {
+interface Props {
+  redirectUrl?: string;
+}
+
+const SignInWithEmail = ({ redirectUrl }: Props) => {
   return (
     <div className="grid items-center justify-center h-full">
       <div className="flex flex-col justify-center gap-7 mt-32">
@@ -12,7 +16,11 @@ const SignInWithEmail = () => {
         </p>
       </div>
       <div className="mb-28">
-        <AuthenticationForm isLogin={true} element={<SignInDialog />} />
+        <AuthenticationForm
+          isLogin={true}
+          element={<SignInDialog redirectUrl={redirectUrl} />}
+          redirectUrl={redirectUrl}
+        />
       </div>
     </div>
   );

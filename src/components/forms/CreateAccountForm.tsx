@@ -9,9 +9,10 @@ import { AppDispatch } from '@/redux/store';
 
 interface Props {
   email: string;
+  redirectUrl?: string;
 }
 
-const CreateAccountForm = ({ email }: Props) => {
+const CreateAccountForm = ({ email, redirectUrl }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const [name, setName] = useState('');
   const [isPending, setIsPending] = useState(false);
@@ -42,7 +43,7 @@ const CreateAccountForm = ({ email }: Props) => {
           })
           .finally(() => {
             setIsPending(false);
-            route.push('/');
+            route.push(redirectUrl ?? '/');
           });
       }}
     >

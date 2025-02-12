@@ -1,7 +1,11 @@
 import AuthenticationForm from '../forms/AuthenticationForm';
 import SignUpDialog from './SignUpDialog';
 
-const SignUpWithEmail = () => {
+interface Props {
+  redirectUrl?: string;
+}
+
+const SignUpWithEmail = ({ redirectUrl }: Props) => {
   return (
     <div className="grid items-center justify-center h-full">
       <div className="flex flex-col justify-center gap-7 mt-32">
@@ -10,7 +14,11 @@ const SignUpWithEmail = () => {
           Enter your email address to create an account.
         </p>
       </div>
-      <AuthenticationForm isLogin={false} element={<SignUpDialog />} />
+      <AuthenticationForm
+        isLogin={false}
+        element={<SignUpDialog redirectUrl={redirectUrl} />}
+        redirectUrl={redirectUrl}
+      />
       <p className="text-sm font-light text-black/60 max-w-[324px] mb-28 mt-5">
         This site is protected by reCAPTCHA Enterprise and the{' '}
         <span className="underline cursor-pointer">Google Privacy Policy</span>{' '}

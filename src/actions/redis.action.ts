@@ -16,7 +16,8 @@ import {
 
 export async function storeTempTokenDataAction({
   token,
-  email
+  email,
+  redirectUrl
 }: StoreTempUserDataProps): Promise<StoreTempUserDataType> {
   try {
     await redis.get(token, err => {
@@ -30,6 +31,7 @@ export async function storeTempTokenDataAction({
 
     const data = {
       email,
+      redirectUrl: redirectUrl ?? '/',
       alreadyUsed: false,
       exp
     };
@@ -61,6 +63,35 @@ export async function getTempTokenDataAction(
     return JSON.parse(Buffer.from(data).toString('utf-8'));
   } catch (err) {
     console.log('[ERROR_GET_TEMP_TOKEN_DATA]', err);
+  }
+}
+
+export async function setTokenAlreadyUsedAction(
+  token: string
+): Promise<boolean> {
+  try {
+    const data = await redis.getBuffer(token, (_, redisData) => {
+      return redisData;
+    });
+    if (!data) return false;
+
+    const decodedData = JSON.parse(Buffer.from(data).toString('utf-8'));
+    if (decodedData.alreadyUsed) return true;
+
+    decodedData.alreadyUsed = true;
+
+    const res = await redis.set(
+      token,
+      Buffer.from(JSON.stringify(decodedData)),
+      'EX',
+      60 * (60 * 2)
+    );
+
+    if (!res) return false;
+    return true;
+  } catch (err) {
+    console.log('[ERROR_GET_TEMP_TOKEN_DATA]', err);
+    return false;
   }
 }
 

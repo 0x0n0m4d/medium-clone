@@ -43,7 +43,7 @@ const AvatarButton = () => {
           <DropdownMenu.Item className="group relative flex h-[197px] select-none items-center justify-center leading-none outline-none">
             <div className="w-full h-full flex flex-col items-center justify-between p-10">
               <OpenModalButton
-                element={<SignUpDialog />}
+                element={<SignUpDialog redirectUrl="/plans" />}
                 className="text-sm bg-transparent text-black/60 hover:text-black/80 w-full flex items-center justify-between text-start"
               >
                 Become a Medium member
@@ -64,19 +64,19 @@ const AvatarButton = () => {
                 </svg>
               </OpenModalButton>
               <OpenModalButton
-                element={<SignUpDialog />}
+                element={<SignUpDialog redirectUrl="/mastodon" />}
                 className="text-sm bg-transparent text-black/60 hover:text-black/80 w-full block items-center text-start"
               >
                 Create a Mastodon account
               </OpenModalButton>
               <OpenModalButton
-                element={<SignUpDialog />}
+                element={<SignUpDialog redirectUrl="/verified-authors" />}
                 className="text-sm bg-transparent text-black/60 hover:text-black/80 w-full block items-center text-start"
               >
                 Apply for author verification
               </OpenModalButton>
               <OpenModalButton
-                element={<SignUpDialog />}
+                element={<SignUpDialog redirectUrl="/partner-program" />}
                 className="text-sm bg-transparent text-black/60 hover:text-black/80 w-full block items-center text-start"
               >
                 Apply for the Partner Program

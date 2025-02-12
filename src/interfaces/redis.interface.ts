@@ -9,6 +9,7 @@ export interface GetTempUserDataProps {
 export interface StoreTempUserDataProps {
   token: string;
   email: string;
+  redirectUrl?: string;
 }
 
 export interface StoreUserSessionProps {

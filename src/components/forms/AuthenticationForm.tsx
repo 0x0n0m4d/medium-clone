@@ -12,16 +12,19 @@ import OpenModalButton from '../modals/OpenModalButton';
 interface Props {
   isLogin: boolean;
   element: ReactNode;
+  redirectUrl?: string;
 }
 
-const AuthenticationForm = ({ isLogin, element }: Props) => {
+const AuthenticationForm = ({ isLogin, element, redirectUrl }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const { setModalOpen } = useContext(ModalContext);
   const [email, setEmail] = useState('');
   const [isPending, setIsPending] = useState(false);
 
   const handleSubmit = async () => {
-    const action = await dispatch(saveTempData({ email, isLogin }));
+    const action = await dispatch(
+      saveTempData({ email, isLogin, redirectUrl })
+    );
     return action.payload;
   };
 

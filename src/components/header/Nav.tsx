@@ -75,7 +75,7 @@ const Nav = () => {
             </Link>
             <OpenModalButton
               className="hidden sm:flex items-center py-2.5 px-5 text-black/50 hover:text-black/90 gap-x-3"
-              element={<SignInDialog />}
+              element={<SignInDialog redirectUrl="/new-story" />}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

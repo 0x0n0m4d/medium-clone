@@ -6,10 +6,14 @@ import ModalContext from '@/contexts/ModalContext';
 import AuthenticationDialog from './AuthenticationDialog';
 import SignInWithEmail from './SignInWithEmail';
 
-const SignInDialog = () => {
+interface Props {
+  redirectUrl?: string;
+}
+
+const SignInDialog = ({ redirectUrl }: Props) => {
   const { setModalOpen } = useContext(ModalContext);
   return (
-    <AuthenticationDialog isSignUpPage={false}>
+    <AuthenticationDialog isSignUpPage={false} redirectUrl={redirectUrl}>
       <ul className="grid gap-4 place-items-center mb-14">
         <li className="flex relative border border-solid border-black/70 rounded-full w-[300px] h-[42.5px]">
           <ButtonWithIcon icon="fa-brands fa-google" onClick={() => {}}>
@@ -40,7 +44,9 @@ const SignInDialog = () => {
         <li className="flex relative border border-solid border-black/70 rounded-full w-[300px] h-[42.5px]">
           <ButtonWithIcon
             icon="fa-regular fa-envelope thin-icon"
-            onClick={() => setModalOpen(true, <SignInWithEmail />)}
+            onClick={() =>
+              setModalOpen(true, <SignInWithEmail redirectUrl={redirectUrl} />)
+            }
           >
             Sign in with email
           </ButtonWithIcon>

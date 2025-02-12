@@ -11,10 +11,11 @@ interface TempDataProps {
 
 export const saveTempData = createAsyncThunk(
   'saveTempData',
-  async ({ email, isLogin }: SendMailProps): Promise<any> => {
-    const res = await axios.post('/api/email', {
-      email: email,
-      operation: isLogin ? 'login' : 'register'
+  async ({ email, isLogin, redirectUrl }: SendMailProps): Promise<any> => {
+    const res = await axios.post('/api/email/data', {
+      email,
+      operation: isLogin ? 'login' : 'register',
+      redirectUrl
     });
 
     return res.data;
@@ -24,10 +25,22 @@ export const saveTempData = createAsyncThunk(
 export const fetchTempData = createAsyncThunk(
   'fetchTempData',
   async (token: string): Promise<any> => {
-    const res = await axios.get('/api/email', {
+    const res = await axios.get('/api/email/data', {
       params: { token: token }
     });
     return res.data;
+  }
+);
+
+export const setTokenAlreadyUsed = createAsyncThunk(
+  'setTokenAlreadyUsed',
+  async (token: string): Promise<boolean> => {
+    const res = await axios.post('/api/email', {
+      token
+    });
+
+    if (res.data === 'OK') return true;
+    return false;
   }
 );
 

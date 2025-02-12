@@ -1,7 +1,10 @@
 import { ReactNode, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { redirect } from 'next/navigation';
-import { fetchTempData } from '@/redux/slices/tempData.slice';
+import {
+  fetchTempData,
+  setTokenAlreadyUsed
+} from '@/redux/slices/tempData.slice';
 import { AppDispatch } from '@/redux/store';
 import Loading from '../Loading';
 import CreateAccountPage from './CreateAccountPage';
@@ -25,13 +28,21 @@ const EmailCallback = ({ token, isLogin }: Props) => {
       return <Loading />;
     }
     const currentDate = new Date();
-    if (tempData.data?.expirationTime < currentDate) {
+    if (
+      tempData.data?.expirationTime < currentDate ||
+      tempData.data?.alreadyUsed
+    ) {
       return <ExpiredEmailDialog isLogin={isLogin} />;
     }
 
-    if (isLogin) redirect('/');
-
-    return <CreateAccountPage email={tempData.data.email} />;
+    dispatch(setTokenAlreadyUsed(token));
+    if (isLogin) redirect(tempData.data.redirectUrl);
+    return (
+      <CreateAccountPage
+        email={tempData.data.email}
+        redirectUrl={tempData.data.redirectUrl}
+      />
+    );
   };
 
   useEffect(() => {
