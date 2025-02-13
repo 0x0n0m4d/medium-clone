@@ -1,18 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import AuthContext from '@/contexts/AuthContext';
 import SignInDialog from '../auth/SignInDialog';
 import SignUpDialog from '../auth/SignUpDialog';
 import Logo from '../Logo';
 import OpenModalButton from '../modals/OpenModalButton';
-import AvatarButton from './AvatarButton';
+import AvatarButton from './dropdown/AvatarButton';
 import SearchBar from './SearchBar';
 
 const Nav = () => {
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+  const [cookies] = useCookies(['access_token']);
+  const { user } = useContext(AuthContext);
 
   useMotionValueEvent(scrollY, 'change', latest => {
     const previous = scrollY.getPrevious();
@@ -31,7 +37,9 @@ const Nav = () => {
       className="bg-white sticky top-0 w-full z-10 px-6 lg:px-10"
     >
       <div className="flex flex-col items-center text-xs">
-        <div className="lg:hidden flex justify-between items-center w-full flex-grow min-h-[41px] border-b border-solid border-gray-100">
+        <div
+          className={`lg:hidden flex items-center w-full flex-grow min-h-[41px] border-b border-solid border-gray-100 ${cookies.access_token && user ? 'justify-center' : 'justify-between'}`}
+        >
           <Link
             href="/membership"
             className="serif text-black/50 hover:text-black/90 h-full flex items-center justify-center gap-x-3"
@@ -50,20 +58,22 @@ const Nav = () => {
               ></path>
             </svg>
           </Link>
-          <div className="flex items-center gap-x-4">
-            <OpenModalButton
-              className="py-0.5 px-3 bg-primary hover:bg-phover text-white rounded-full"
-              element={<SignUpDialog />}
-            >
-              Sign up
-            </OpenModalButton>
-            <OpenModalButton
-              className="py-0.5 px-3 text-black/50 hover:text-black/90"
-              element={<SignInDialog />}
-            >
-              Sign in
-            </OpenModalButton>
-          </div>
+          {!cookies.access_token && !user && (
+            <div className="flex items-center gap-x-4">
+              <OpenModalButton
+                className="py-0.5 px-3 bg-primary hover:bg-phover text-white rounded-full"
+                element={<SignUpDialog />}
+              >
+                Sign up
+              </OpenModalButton>
+              <OpenModalButton
+                className="py-0.5 px-3 text-black/50 hover:text-black/90"
+                element={<SignInDialog />}
+              >
+                Sign in
+              </OpenModalButton>
+            </div>
+          )}
         </div>
         <div className="flex justify-between w-full flex-grow items-center min-h-[57px] border-b border-solid border-gray-100">
           <div className="flex items-center gap-x-5">
@@ -117,18 +127,50 @@ const Nav = () => {
               </svg>
               Write
             </OpenModalButton>
-            <OpenModalButton
-              className="hidden lg:flex py-2.5 px-5 bg-primary hover:bg-phover text-white rounded-full"
-              element={<SignUpDialog />}
-            >
-              Sign up
-            </OpenModalButton>
-            <OpenModalButton
-              className="hidden lg:flex py-2.5 px-5 text-black/50 hover:text-black/90"
-              element={<SignInDialog />}
-            >
-              Sign in
-            </OpenModalButton>
+            {!cookies.access_token && !user ? (
+              <>
+                <OpenModalButton
+                  className="hidden lg:flex py-2.5 px-5 bg-primary hover:bg-phover text-white rounded-full"
+                  element={<SignUpDialog />}
+                >
+                  Sign up
+                </OpenModalButton>
+                <OpenModalButton
+                  className="hidden lg:flex py-2.5 px-5 text-black/50 hover:text-black/90"
+                  element={<SignInDialog />}
+                >
+                  Sign in
+                </OpenModalButton>
+              </>
+            ) : (
+              <Link
+                href="/me/notifications"
+                className={`flex mr-5 ${pathname === '/me/notifications' ? 'text-black' : 'text-black/50 hover:text-black/90'}`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  aria-label="Notifications"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    d="M15 18.5a3 3 0 1 1-6 0"
+                  ></path>
+                  <path
+                    fill={
+                      pathname === '/me/notifications' ? 'currentColor' : ''
+                    }
+                    stroke="currentColor"
+                    strokeLinejoin="round"
+                    d="M5.5 10.532V9a6.5 6.5 0 0 1 13 0v1.532c0 1.42.564 2.782 1.568 3.786l.032.032c.256.256.4.604.4.966v2.934a.25.25 0 0 1-.25.25H3.75a.25.25 0 0 1-.25-.25v-2.934c0-.363.144-.71.4-.966l.032-.032A5.35 5.35 0 0 0 5.5 10.532Z"
+                  ></path>
+                </svg>
+              </Link>
+            )}
             <AvatarButton />
           </div>
         </div>

@@ -55,13 +55,14 @@ export async function saveUserDataAction({
   try {
     if (!email) throw new Error('email is required');
 
-    const username = '';
+    const username = '@' + email.split('@')[0];
 
     const user = await prisma.user.create({
       data: {
         email,
         username,
-        name
+        name,
+        photoUrl: '/assets/default-avatar.png'
       }
     });
 
