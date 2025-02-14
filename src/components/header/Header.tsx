@@ -4,14 +4,14 @@ import FrontNav from './FrontNav';
 
 const Header = () => {
   return (
-    <header className="bg-background fixed w-full z-10 px-20">
-      <div className="flex justify-between max-w-xl flex-grow">
+    <div className="bg-background fixed flex justify-center border-b border-solid border-[#292929] py-[18px] w-full z-10 px-20">
+      <div className="flex items-center justify-between max-w-xl flex-grow">
         <Link href="/" aria-label="logo">
           <Logo />
         </Link>
         <FrontNav />
       </div>
-    </header>
+    </div>
   );
 };
 

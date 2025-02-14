@@ -22,6 +22,17 @@ interface Props {
   name: string;
 }
 
+export const getUserData = createAsyncThunk(
+  'getUserData',
+  async (token: string): Promise<any> => {
+    const res = await axios.post('/api/auth/login', {
+      token
+    });
+
+    return res.data;
+  }
+);
+
 export const createUserSession = createAsyncThunk(
   'saveUserData',
   async ({ email, name }: Props): Promise<any> => {
@@ -39,6 +50,17 @@ export const getUserSessionData = createAsyncThunk(
   async (jwt: string): Promise<any> => {
     const res = await axios.get('/api/redis', {
       headers: { Authorization: `${jwt}` }
+    });
+
+    return res.data;
+  }
+);
+
+export const removeUserSessionData = createAsyncThunk(
+  'removeUserData',
+  async (jwt: string): Promise<any> => {
+    const res = await axios.post('/api/auth/logout', {
+      jwt: jwt
     });
 
     return res.data;

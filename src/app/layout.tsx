@@ -2,6 +2,7 @@
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './globals.css';
+import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux';
 import App from '@/components/App';
 import store from '@/redux/store';
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <Provider store={store}>
-      <App>{children}</App>
+      <CookiesProvider>
+        <App>{children}</App>
+      </CookiesProvider>
     </Provider>
   );
 }

@@ -38,13 +38,6 @@ body {
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-header {
-  padding: 18px 0px;
-  border-bottom: solid 1px rgb(41, 41, 41);
-  display: flex;
-  justify-content: center;
-}
-
 button {
   cursor: pointer;
   font-family: inherit;

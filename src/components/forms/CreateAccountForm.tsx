@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { setTokenAlreadyUsed } from '@/redux/slices/tempData.slice';
 import { createUserSession } from '@/redux/slices/userData.slice';
 import { AppDispatch } from '@/redux/store';
 
@@ -13,15 +14,25 @@ interface Props {
 }
 
 const CreateAccountForm = ({ email, redirectUrl }: Props) => {
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token');
+
   const dispatch = useDispatch<AppDispatch>();
   const [name, setName] = useState('');
   const [isPending, setIsPending] = useState(false);
-  const [_, setCookies] = useCookies();
+  const [, setCookies] = useCookies();
   const route = useRouter();
 
   const handleSubmit = async () => {
-    const action = await dispatch(createUserSession({ email, name }));
-    return action.payload.jwt;
+    const action = await dispatch(createUserSession({ email, name })).then(
+      async res => {
+        if (token) {
+          await dispatch(setTokenAlreadyUsed(token));
+        }
+        return res.payload.jwt;
+      }
+    );
+    return action;
   };
 
   return (

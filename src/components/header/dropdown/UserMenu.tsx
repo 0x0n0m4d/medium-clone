@@ -1,8 +1,11 @@
 'use client';
 
+import { useState } from 'react';
+import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   BookmarkIcon,
   FillBookmarkIcon,
@@ -13,6 +16,8 @@ import {
   SparkleIcon,
   StatsIcon
 } from '@/atoms/icons';
+import { removeUserSessionData } from '@/redux/slices/userData.slice';
+import { AppDispatch } from '@/redux/store';
 
 interface Props {
   username: string;
@@ -20,7 +25,28 @@ interface Props {
 }
 
 const UserMenu = ({ email, username }: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
   const pathname = usePathname();
+  const [cookies, , removeCookie] = useCookies(['access_token']);
+  const [isPending, setIsPending] = useState<boolean>(false);
+
+  const handleLogout = async () => {
+    try {
+      const res = await dispatch(
+        removeUserSessionData(cookies.access_token)
+      ).then(res => {
+        return res.payload;
+      });
+
+      if (!res) return false;
+
+      return true;
+    } catch (err) {
+      console.log('[ERROR_LOGOUT]', err);
+      return false;
+    }
+  };
 
   return (
     <DropdownMenu.Content
@@ -129,7 +155,27 @@ const UserMenu = ({ email, username }: Props) => {
       </DropdownMenu.Item>
       <DropdownMenu.Item className="group relative flex select-none items-center justify-center leading-none outline-none">
         <div className="w-full h-full flex flex-col items-center justify-between p-10">
-          <button className="text-sm bg-transparent text-black/60 hover:text-black/90 w-full block items-center text-start leading-10">
+          <button
+            className="text-sm bg-transparent text-black/60 hover:text-black/90 disabled:text-black/45 w-full block items-center text-start leading-10"
+            disabled={isPending}
+            onClick={e => {
+              e.preventDefault();
+              setIsPending(true);
+
+              handleLogout()
+                .then(() => {
+                  removeCookie('access_token', { path: '/', sameSite: 'lax' });
+                })
+                .finally(() => {
+                  if (pathname === '/') {
+                    router.refresh();
+                  } else {
+                    router.push('/');
+                  }
+                  setIsPending(false);
+                });
+            }}
+          >
             Sign out <br />
             {email}
           </button>

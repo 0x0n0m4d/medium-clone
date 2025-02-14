@@ -146,3 +146,14 @@ export async function getUserSessionAction(
     console.log('[ERROR_GET_USER_SESSION_DATA]', err);
   }
 }
+
+export async function removeUserSessionAction(token: string): Promise<number> {
+  try {
+    const res = await redis.del(token);
+
+    return res;
+  } catch (err) {
+    console.log('[ERROR_REMOVE_USER_SESSION_DATA]', err);
+    return 0;
+  }
+}

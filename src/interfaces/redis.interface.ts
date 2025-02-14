@@ -16,4 +16,5 @@ export interface StoreUserSessionProps {
   ip: string;
   userAgent: string;
   userData: User;
+  jwt?: string;
 }
