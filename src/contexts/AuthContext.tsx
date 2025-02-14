@@ -4,13 +4,13 @@ import { createContext } from 'react';
 import { User } from '@/interfaces/user.interface';
 
 interface AuthProps {
-  user: User | null;
+  user: User | null | undefined;
   isLoading: boolean;
   error: boolean;
 }
 
 const AuthContext = createContext<AuthProps>({
-  user: null,
+  user: undefined,
   isLoading: false,
   error: false
 });

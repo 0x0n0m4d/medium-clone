@@ -1,7 +1,6 @@
 'use client';
 
 import { useContext, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -24,7 +23,6 @@ const Nav = () => {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
-  const [cookies] = useCookies(['access_token']);
   const { user } = useContext(AuthContext);
 
   useMotionValueEvent(scrollY, 'change', latest => {
@@ -45,7 +43,7 @@ const Nav = () => {
     >
       <div className="flex flex-col items-center text-xs">
         <div
-          className={`lg:hidden flex items-center w-full flex-grow min-h-[41px] border-b border-solid border-gray-100 ${cookies.access_token && user ? 'justify-center' : 'justify-between'}`}
+          className={`lg:hidden flex items-center w-full flex-grow min-h-[41px] border-b border-solid border-gray-100 ${user ? 'justify-center' : 'justify-between'}`}
         >
           <Link
             href="/membership"
@@ -54,7 +52,7 @@ const Nav = () => {
             Open in app
             <ArrowTopRight />
           </Link>
-          {!cookies.access_token && !user && (
+          {!user && (
             <div className="flex items-center gap-x-4">
               <OpenModalButton
                 className="py-0.5 px-3 bg-primary hover:bg-phover text-white rounded-full"
@@ -94,7 +92,7 @@ const Nav = () => {
               <WriteIcon />
               Write
             </OpenModalButton>
-            {!cookies.access_token && !user ? (
+            {!user ? (
               <>
                 <OpenModalButton
                   className="hidden lg:flex py-2.5 px-5 bg-primary hover:bg-phover text-white rounded-full"

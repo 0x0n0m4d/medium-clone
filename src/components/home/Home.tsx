@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useContext } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import AuthContext from '@/contexts/AuthContext';
 import Loading from '../Loading';
@@ -8,24 +8,33 @@ import FrontPage from './FrontPage';
 import UserHomeFeed from './UserHomeFeed';
 
 const Home = () => {
-  const [cookies, , removeCookie] = useCookies();
-  const { user, isLoading, error } = useContext(AuthContext);
-
-  if (!cookies.access_token) return <FrontPage />;
+  const [, , removeCookie] = useCookies();
+  const { user, error } = useContext(AuthContext);
+  const [userIsLogged, setUserIsLogged] = useState<boolean | null>(null);
 
   const Content = (): ReactNode => {
     if (error) {
       removeCookie('access_token');
       return <FrontPage />;
     }
-    if (!user && cookies.access_token) {
-      return <Loading />;
+    if (userIsLogged === false) {
+      return <FrontPage />;
     }
 
     return <UserHomeFeed />;
   };
 
-  return <div>{isLoading ? <Loading /> : <Content />}</div>;
+  useEffect(() => {
+    if (userIsLogged === null) {
+      if (user) {
+        setUserIsLogged(true);
+      } else if (user === null) {
+        setUserIsLogged(false);
+      }
+    }
+  }, [userIsLogged, user]);
+
+  return userIsLogged === null ? <Loading /> : <Content />;
 };
 
 export default Home;

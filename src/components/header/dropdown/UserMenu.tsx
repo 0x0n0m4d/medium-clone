@@ -167,12 +167,11 @@ const UserMenu = ({ email, username }: Props) => {
                   removeCookie('access_token', { path: '/', sameSite: 'lax' });
                 })
                 .finally(() => {
-                  if (pathname === '/') {
-                    router.refresh();
-                  } else {
+                  if (pathname !== '/') {
                     router.push('/');
                   }
                   setIsPending(false);
+                  window.location.reload();
                 });
             }}
           >

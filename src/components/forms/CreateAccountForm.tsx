@@ -55,6 +55,7 @@ const CreateAccountForm = ({ email, redirectUrl }: Props) => {
           .finally(() => {
             setIsPending(false);
             route.push(redirectUrl ?? '/');
+            window.location.reload();
           });
       }}
     >

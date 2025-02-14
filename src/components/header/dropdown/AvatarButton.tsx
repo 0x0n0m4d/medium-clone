@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { useCookies } from 'react-cookie';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import Image from 'next/image';
 import AuthContext from '@/contexts/AuthContext';
@@ -7,7 +6,6 @@ import Menu from './Menu';
 import UserMenu from './UserMenu';
 
 const AvatarButton = () => {
-  const [cookies] = useCookies(['access_token']);
   const { user } = useContext(AuthContext);
 
   return (
@@ -23,7 +21,7 @@ const AvatarButton = () => {
         />
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        {cookies.access_token && user ? (
+        {user ? (
           <UserMenu username={user.username} email={user.email} />
         ) : (
           <Menu />

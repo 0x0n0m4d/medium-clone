@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import {
   fetchTempData,
   setTokenAlreadyUsed
@@ -21,6 +21,7 @@ interface Props {
 }
 
 const EmailCallback = ({ token, isLogin }: Props) => {
+  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const tempData = useSelector((state: any) => state.tempData);
   const [userExist, setUserExist] = useState<boolean | undefined>(undefined);
@@ -41,7 +42,10 @@ const EmailCallback = ({ token, isLogin }: Props) => {
       return <ExpiredEmailDialog isLogin={isLogin} />;
     }
 
-    if (userExist) redirect(tempData.data.redirectUrl);
+    if (userExist) {
+      router.push(tempData.data.redirectUrl);
+      window.location.reload();
+    }
 
     return (
       <CreateAccountPage

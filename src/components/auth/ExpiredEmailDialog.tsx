@@ -65,6 +65,7 @@ const ExpiredEmailDialog = ({ isLogin }: Props) => {
                   .catch(err => {
                     console.log('[ERROR_SEND_MAIL_ACTION]', err);
                     route.push('/');
+                    window.location.reload();
                   })
                   .finally(() => setIsPending(false));
               }}

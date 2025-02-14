@@ -1,35 +1,42 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
+import { useDispatch } from 'react-redux';
 import { User } from '@/interfaces/user.interface';
 import { getUserSessionData } from '@/redux/slices/userData.slice';
+import { AppDispatch } from '@/redux/store';
 
-interface Props {
-  jwt: string | null;
-  dispatch: any;
-}
-
-export default function useAuth({ dispatch, jwt }: Props) {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(jwt ? true : false);
+export default function useAuth() {
+  const dispatch = useDispatch<AppDispatch>();
+  const [cookies] = useCookies(['access_token']);
+  const [user, setUser] = useState<User | null | undefined>(
+    cookies.access_token ? undefined : null
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(
+    cookies.access_token ? true : false
+  );
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!user && jwt) {
-      dispatch(getUserSessionData(jwt))
+    if (user === undefined && isLoading) {
+      dispatch(getUserSessionData(cookies.access_token))
         .then((res: any) => {
           if (res.payload) {
             setUser(res.payload.userData);
+          } else {
+            setUser(null);
           }
         })
         .catch(() => {
           setError(true);
+          setUser(null);
         })
         .finally(() => {
           setIsLoading(false);
         });
     }
-  }, [jwt, user]);
+  }, [isLoading, user, cookies]);
 
   return { user, isLoading, error };
 }
