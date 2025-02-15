@@ -64,7 +64,7 @@ const Page = () => {
           </h3>
           <Link
             href="/gift-plans"
-            className="px-8 py-4 bg-black/90 hover:bg-black rounded-full text-white text-center text-base"
+            className="px-8 py-4 bg-black/90 hover:bg-black rounded-full text-white text-center text-base z-30"
           >
             Give Medium now
           </Link>
