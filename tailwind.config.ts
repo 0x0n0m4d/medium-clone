@@ -12,7 +12,8 @@ export default {
       sm: '727px',
       md: '886px',
       lg: '903px',
-      xl: '987px'
+      xl: '987px',
+      '2xl': '1080px'
     },
     fontSize: {
       xs: '13px',

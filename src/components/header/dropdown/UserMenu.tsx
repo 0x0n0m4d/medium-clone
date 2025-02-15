@@ -145,7 +145,7 @@ const UserMenu = ({ email, username }: Props) => {
             Apply for the Partner Program
           </Link>
           <Link
-            href="/gift"
+            href="/gift-plans"
             target="_blank"
             className="text-sm bg-transparent text-black/60 hover:text-black/90 w-full block items-center text-start"
           >
