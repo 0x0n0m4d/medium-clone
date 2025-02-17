@@ -1,10 +1,12 @@
 import ArrowTopRight from './ArrowTopRight';
 import BookmarkIcon from './BookmarkIcon';
 import CalendarIcon from './CalendarIcon';
+import CheckIcon from './CheckIcon';
 import FillBookmarkIcon from './FillBookmarkIcon';
 import FillNoteIcon from './FillNoteIcon';
 import FillNotificationsIcon from './FillNotificationsIcon';
 import FillStatsIcon from './FillStatsIcon';
+import MastodonIcon from './MastodonIcon';
 import NoteIcon from './NoteIcon';
 import NotificationsIcon from './NotificationsIcon';
 import ProfileIcon from './ProfileIcon';
@@ -18,6 +20,8 @@ export {
   FillBookmarkIcon,
   BookmarkIcon,
   CalendarIcon,
+  CheckIcon,
+  MastodonIcon,
   FillNoteIcon,
   NoteIcon,
   FillNotificationsIcon,
