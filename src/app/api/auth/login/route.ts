@@ -14,8 +14,6 @@ export async function POST(req: Request) {
         status: 400
       });
 
-    console.log(token);
-
     const email = await getTempTokenDataAction(token).then(res => {
       return res?.email;
     });

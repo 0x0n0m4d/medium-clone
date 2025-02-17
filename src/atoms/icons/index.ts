@@ -1,5 +1,6 @@
 import ArrowTopRight from './ArrowTopRight';
 import BookmarkIcon from './BookmarkIcon';
+import CalendarIcon from './CalendarIcon';
 import FillBookmarkIcon from './FillBookmarkIcon';
 import FillNoteIcon from './FillNoteIcon';
 import FillNotificationsIcon from './FillNotificationsIcon';
@@ -16,6 +17,7 @@ export {
   ArrowTopRight,
   FillBookmarkIcon,
   BookmarkIcon,
+  CalendarIcon,
   FillNoteIcon,
   NoteIcon,
   FillNotificationsIcon,

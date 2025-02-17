@@ -8,13 +8,13 @@ import FrontPage from './FrontPage';
 import UserHomeFeed from './UserHomeFeed';
 
 const Home = () => {
-  const [, , removeCookie] = useCookies();
+  const [, , removeCookie] = useCookies(['access_token']);
   const { user, error } = useContext(AuthContext);
   const [userIsLogged, setUserIsLogged] = useState<boolean | null>(null);
 
   const Content = (): ReactNode => {
     if (error) {
-      removeCookie('access_token');
+      removeCookie('access_token', { path: '/', sameSite: 'lax' });
       return <FrontPage />;
     }
     if (userIsLogged === false) {
