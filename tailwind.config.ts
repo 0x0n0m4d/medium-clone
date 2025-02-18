@@ -8,10 +8,11 @@ export default {
   ],
   theme: {
     screens: {
+      ban: '377px',
       xs: '552px',
       sm: '728px',
       md: '886px',
-      lg: '903px',
+      lg: '904px',
       xl: '987px',
       '2xl': '1080px'
     },

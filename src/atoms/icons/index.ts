@@ -13,6 +13,7 @@ import ProfileIcon from './ProfileIcon';
 import SearchIcon from './SearchIcon';
 import SparkleIcon from './SparkleIcon';
 import StatsIcon from './StatsIcon';
+import VerifiedIcon from './VerifiedIcon';
 import WriteIcon from './WriteIcon';
 
 export {
@@ -31,5 +32,6 @@ export {
   FillStatsIcon,
   StatsIcon,
   ProfileIcon,
+  VerifiedIcon,
   WriteIcon
 };
