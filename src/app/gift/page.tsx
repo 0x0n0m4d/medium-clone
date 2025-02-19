@@ -74,7 +74,7 @@ const Page = () => {
           <div className="min-h-[450px] -z-50" />
           <ul className="flex items-center text-center underline gap-x-3 text-[11px] mb-16">
             <li>
-              <Link href="/about">About</Link>
+              <Link href="/">About</Link>
             </li>
             <li>
               <Link href="/">Terms</Link>
@@ -86,10 +86,10 @@ const Page = () => {
               <Link href="/">Help</Link>
             </li>
             <li>
-              <Link href="/business">Teams</Link>
+              <Link href="/">Teams</Link>
             </li>
             <li>
-              <button className="underline">Press</button>
+              <Link href="/">Press</Link>
             </li>
           </ul>
         </footer>

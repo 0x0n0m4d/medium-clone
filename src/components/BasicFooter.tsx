@@ -8,11 +8,11 @@ const BasicFooter = () => {
         <Logo />
       </Link>
       <div className="flex items-center gap-x-3 underline text-stone-700 text-[11px]">
-        <Link href="/about">About</Link>
+        <Link href="/">About</Link>
         <Link href="/">Terms</Link>
         <Link href="/">Privacy</Link>
         <Link href="/">Help</Link>
-        <Link href="/business">Teams</Link>
+        <Link href="/">Teams</Link>
         <Link href="/">Press</Link>
       </div>
     </footer>
