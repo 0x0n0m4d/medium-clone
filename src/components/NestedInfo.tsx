@@ -7,7 +7,7 @@ interface Props {
   info: string;
 }
 
-const NestedAboutInfo = ({ title, info }: Props) => {
+const NestedInfo = ({ title, info }: Props) => {
   const [isItemOpen, setIsItemOpen] = useState<boolean>(false);
 
   return (
@@ -39,4 +39,4 @@ const NestedAboutInfo = ({ title, info }: Props) => {
   );
 };
 
-export default NestedAboutInfo;
+export default NestedInfo;

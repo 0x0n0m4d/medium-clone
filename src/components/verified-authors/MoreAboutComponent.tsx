@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import NestedAboutInfo from './NestedAboutInfo';
+import NestedInfo from '../NestedInfo';
 
 const MoreAboutComponent = () => {
   return (
@@ -7,36 +7,36 @@ const MoreAboutComponent = () => {
       <h2 className="serif text-white text-2xl xs:text-[70px] leading-[36px] xs:leading-[74px]">
         More about author verification on Medium:
       </h2>
-      <NestedAboutInfo
+      <NestedInfo
         title="Who can be verified on Medium?"
         info="At this time, we are accepting applications for verification from all authors who have published books that include an ISBN (International Standard Book Number)."
       />
-      <NestedAboutInfo
+      <NestedInfo
         title="How is author verification different from verification on other platforms?"
         info="Verification on Medium means that the account has been confirmed to be the author of the book or books that are shown on their profile."
       />
-      <NestedAboutInfo
+      <NestedInfo
         title="Can anyone get verified on Medium?"
         info="You do not need to be a paying Medium member nor be enrolled in our Partner Program to become a verified author. You simply need to have an account on Medium, a profile with complete information, and that you’ve published a book, of course."
       />
-      <NestedAboutInfo title="Does it cost money?" info="Nope!" />
-      <NestedAboutInfo
+      <NestedInfo title="Does it cost money?" info="Nope!" />
+      <NestedInfo
         title="How do I know if I am verified?"
         info="When you are verified, a blue icon will appear next to your name on your profile, your story pages, and most other places where your name appears on Medium. You will also receive an email from us when your application has been processed, whether it has been approved or not."
       />
-      <NestedAboutInfo
+      <NestedInfo
         title="How do I know if someone else is verified?"
         info="By the blue icon by their name, and the fact that they have a Books tab on their profile page."
       />
-      <NestedAboutInfo
+      <NestedInfo
         title="Can a verified badge be automatically removed from an account?"
         info="We reserve the right to remove verification from an account if the account is found to not belong to the actual author of the book(s) listed, or if the account otherwise breaks our terms of service."
       />
-      <NestedAboutInfo
+      <NestedInfo
         title="Can I request to remove my verified badge?"
         info="Yes, of course! You can request to have your verification removed by contacting us. Removing the badge will also remove the books from the profile page."
       />
-      <NestedAboutInfo
+      <NestedInfo
         title="What should I do after I’m verified?"
         info="Write a Medium story! You can expand on the ideas in your book, share sections that were cut from the published version, or write on any topic you want. The more you write, the better your readers will get to know you and your work."
       />
