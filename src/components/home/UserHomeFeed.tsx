@@ -1,16 +1,18 @@
 import Nav from '../header/Nav';
+import LeftBar from './LeftBar';
+import RightBar from './RightBar';
 
 const UserHomeFeed = () => {
   return (
-    <div>
+    <section className="bg-white w-full h-full flex flex-col">
       <Nav />
-      <div className="bg-white h-screen w-screen flex flex-col items-center justify-center">
-        Some content
+      <div className="w-full h-full flex justify-center">
+        <div className="w-full max-w-[1336px] h-full flex flex-col lg:flex-row items-start justify-between px-36">
+          <RightBar />
+          <LeftBar />
+        </div>
       </div>
-      <div className="bg-white h-screen w-screen flex flex-col items-center justify-center">
-        Another content
-      </div>
-    </div>
+    </section>
   );
 };
 

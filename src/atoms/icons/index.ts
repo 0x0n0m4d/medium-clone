@@ -9,7 +9,9 @@ import FillStatsIcon from './FillStatsIcon';
 import MastodonIcon from './MastodonIcon';
 import NoteIcon from './NoteIcon';
 import NotificationsIcon from './NotificationsIcon';
+import PlusIcon from './PlusIcon';
 import ProfileIcon from './ProfileIcon';
+import SaveList from './SaveList';
 import SearchIcon from './SearchIcon';
 import SparkleIcon from './SparkleIcon';
 import StatsIcon from './StatsIcon';
@@ -27,10 +29,12 @@ export {
   NoteIcon,
   FillNotificationsIcon,
   NotificationsIcon,
+  SaveList,
   SearchIcon,
   SparkleIcon,
   FillStatsIcon,
   StatsIcon,
+  PlusIcon,
   ProfileIcon,
   VerifiedIcon,
   WriteIcon
