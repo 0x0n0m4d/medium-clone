@@ -3,7 +3,7 @@ export interface User {
   email: string;
   name: string;
   username: string;
-  photoUrl: string | null;
+  photoUrl: string;
   isActivated: boolean;
   bio: string | null;
   pronouns: string[];
