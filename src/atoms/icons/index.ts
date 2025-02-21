@@ -2,6 +2,7 @@ import ArrowTopRight from './ArrowTopRight';
 import BookmarkIcon from './BookmarkIcon';
 import CalendarIcon from './CalendarIcon';
 import CheckIcon from './CheckIcon';
+import EllipsisIcon from './EllipsisIcon';
 import FillBookmarkIcon from './FillBookmarkIcon';
 import FillNoteIcon from './FillNoteIcon';
 import FillNotificationsIcon from './FillNotificationsIcon';
@@ -24,6 +25,7 @@ export {
   BookmarkIcon,
   CalendarIcon,
   CheckIcon,
+  EllipsisIcon,
   MastodonIcon,
   FillNoteIcon,
   NoteIcon,
