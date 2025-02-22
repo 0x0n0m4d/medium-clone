@@ -8,12 +8,83 @@ datasource db {
 }
 
 model User {
-  id          Int      @id @default(autoincrement())
-  email       String   @unique
-  name        String   @db.VarChar(50)
-  username    String   @unique @db.VarChar(64)
-  isActivated Boolean  @default(true)
-  photoUrl    String
-  bio         String?  @db.VarChar(160)
-  pronouns    String[]
+  id           String     @id
+  email        String     @unique
+  name         String     @db.VarChar(50)
+  username     String     @unique @db.VarChar(64)
+  isActivated  Boolean    @default(true)
+  photoUrl     String
+  bio          String?    @db.VarChar(160)
+  isMember     Boolean?   @default(false)
+  isFriend     Boolean?   @default(false)
+  pronouns     String[]
+
+  lists        List[]
+  listsClap    ListClap[]
+  articles     Article[]
+  articlesClap ArticleClap[]
+  followers    Follower[] @relation("UserFollowers")
+  followings   Follower[] @relation("UserFollowing")
+
+  @@index([username, name])
+}
+
+model Follower {
+  id          String @id @default(uuid())
+  followerId  String
+  followingId String
+
+  user        User   @relation("UserFollowers", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User   @relation("UserFollowing", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@index([followerId, followingId])
+}
+
+model Article {
+  id        String        @id @default(uuid())
+  userId    String
+  createdAt DateTime      @default(now())
+  title     String
+  content   Bytes
+  lists     List[]
+  claps     ArticleClap[] @relation("ArticleClap")
+
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([id, userId])
+}
+
+model List {
+  id        String     @id @default(uuid())
+  userId    String
+  articleId String
+  name      String
+  createdAt DateTime   @default(now())
+
+  claps     ListClap[] @relation("ListClap")
+
+  articles  Article    @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([id, userId])
+}
+
+model ArticleClap {
+  id        String  @id @default(uuid())
+  userId    String
+  articleId String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  article   Article @relation("ArticleClap", fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([userId, articleId])
+}
+
+model ListClap {
+  id     String @id @default(uuid())
+  userId String
+  listId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  list   List   @relation("ListClap", fields: [listId], references: [id], onDelete: Cascade)
+
+  @@index([userId, listId])
 }
