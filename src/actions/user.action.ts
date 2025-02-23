@@ -5,6 +5,7 @@ import { v5 as uuidv5 } from 'uuid';
 import EmailTemplate from '@/components/EmailTemplate';
 import {
   GetUserDataActionProps,
+  GetUsersDataActionProps,
   SaveUserDataActionProps,
   SendMailProps
 } from '@/interfaces/user.interface';
@@ -12,6 +13,7 @@ import prisma from '@/lib/prismadb';
 import { NAMESPACE } from '@/lib/utils';
 import {
   GetUserDataActionType,
+  GetUsersDataActionType,
   SaveUserDataActionType,
   SendMailType
 } from '@/types/user.type';
@@ -91,5 +93,25 @@ export async function getUserDataAction({
     return user;
   } catch (err) {
     console.log('[ERROR_GET_USER_ACTION]', err);
+  }
+}
+
+export async function getUsersAction({
+  size = 3,
+  id
+}: GetUsersDataActionProps): Promise<GetUsersDataActionType> {
+  try {
+    if (!id) throw new Error('id required');
+
+    const data = await prisma.user.findMany({
+      where: {
+        id: { not: id }
+      },
+      take: size
+    });
+
+    return data;
+  } catch (err) {
+    console.log('[ERROR_GET_USERS_ACTION]', err);
   }
 }

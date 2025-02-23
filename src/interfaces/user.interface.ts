@@ -13,3 +13,8 @@ export interface SaveUserDataActionProps {
   email: string;
   name: string;
 }
+
+export interface GetUsersDataActionProps {
+  size?: number;
+  id: string;
+}

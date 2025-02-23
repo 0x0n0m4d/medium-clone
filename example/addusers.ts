@@ -8,7 +8,7 @@ const users = [
     email: 'goat@medium.com',
     name: 'Medium',
     username: '@Medium',
-    photoUrl: 'http://localhost:3000/assets/users/@Medium/avatar.png',
+    photoUrl: '/assets/users/@Medium/avatar.jpeg',
     bio: 'Everyone’s stories and ideas',
     isMember: false,
     isFriend: false
@@ -18,7 +18,7 @@ const users = [
     email: 'staff@medium.com',
     name: 'Medium Staff',
     username: '@MediumStaff',
-    photoUrl: 'http://localhost:3000/assets/users/@MediumStaff/avatar.png',
+    photoUrl: '/assets/users/@MediumStaff/avatar.jpeg',
     bio: 'Official account for news and updates from Medium.',
     isMember: true,
     imFriend: false
@@ -28,7 +28,7 @@ const users = [
     email: 'newsletter@medium.com',
     name: 'The Medium Newsletter',
     username: '@dailynewsletter',
-    photoUrl: 'http://localhost:3000/assets/users/@dailynewsletter/avatar.png',
+    photoUrl: '/assets/users/@dailynewsletter/avatar.jpeg',
     bio: '',
     isMember: false,
     isFriend: true

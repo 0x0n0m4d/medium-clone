@@ -4,3 +4,4 @@ export type SendMailType = boolean | undefined;
 
 export type SaveUserDataActionType = User | undefined;
 export type GetUserDataActionType = User | undefined;
+export type GetUsersDataActionType = User[] | undefined;

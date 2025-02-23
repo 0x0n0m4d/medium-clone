@@ -1,4 +1,4 @@
-'use state';
+'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
@@ -20,26 +20,36 @@ const WhoToFollowContainer = ({
   const [isFollowed, setIsFollowed] = useState<boolean>(false);
 
   return (
-    <div className="w-full flex justify-between">
-      <Link href={`/${username}`} className="w-full min-w-[32px]">
-        <Image
-          src={avatar}
-          alt={name}
-          width={32}
-          height={32}
-          className="w-[32px] h-[32px] rounded-full"
-        />
-      </Link>
-      <div className="w-full flex items-center">
+    <div className="w-screen flex justify-between">
+      <div className="flex gap-x-4">
+        <Link href={`/${username}`} className="min-w-[32px]">
+          <Image
+            src={avatar}
+            alt={name}
+            width={32}
+            height={32}
+            className="w-[32px] h-[32px] rounded-full"
+          />
+        </Link>
         <Link
           href={`/${username}`}
-          className="flex flex-col gap-y-2 max-w-[175px]"
+          className={
+            description
+              ? 'flex flex-col gap-y-2 max-w-[175px]'
+              : 'flex justify-start max-w-[175px]'
+          }
         >
-          <h2 className="text-ellipsis text-base font-bold">{name}</h2>
-          <p className="truncate text-ellipsis text-xs text-stone-500 max-h-[40px]">
-            {description}
-          </p>
+          <h2 className="text-start text-ellipsis text-base font-bold">
+            {name}
+          </h2>
+          {description && (
+            <p className="truncate text-ellipsis text-xs text-stone-500 max-h-[40px]">
+              {description}
+            </p>
+          )}
         </Link>
+      </div>
+      <div className="flex items-start">
         <button
           onClick={e => {
             e.preventDefault();
