@@ -1,8 +1,10 @@
+import { v5 as uuidv5 } from 'uuid';
 import {
   getTempTokenDataAction,
   storeUserSessionAction
 } from '@/actions/redis.action';
 import { getUserDataAction } from '@/actions/user.action';
+import { NAMESPACE } from '@/lib/utils';
 
 export async function POST(req: Request) {
   try {
@@ -23,7 +25,10 @@ export async function POST(req: Request) {
         status: 204
       });
 
-    const user = await getUserDataAction({ email });
+    const username = '@' + email.split('@')[0];
+    const id = uuidv5(username, NAMESPACE);
+
+    const user = await getUserDataAction({ id });
 
     if (!user)
       return new Response(null, {

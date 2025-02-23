@@ -1,6 +1,7 @@
 'use server';
 
 import { Resend } from 'resend';
+import { v5 as uuidv5 } from 'uuid';
 import EmailTemplate from '@/components/EmailTemplate';
 import {
   GetUserDataActionProps,
@@ -8,6 +9,7 @@ import {
   SendMailProps
 } from '@/interfaces/user.interface';
 import prisma from '@/lib/prismadb';
+import { NAMESPACE } from '@/lib/utils';
 import {
   GetUserDataActionType,
   SaveUserDataActionType,
@@ -54,11 +56,14 @@ export async function saveUserDataAction({
 }: SaveUserDataActionProps): Promise<SaveUserDataActionType> {
   try {
     if (!email) throw new Error('email is required');
+    if (!name) throw new Error('name is required');
 
     const username = '@' + email.split('@')[0];
+    const id = uuidv5(username, NAMESPACE);
 
     const user = await prisma.user.create({
       data: {
+        id,
         email,
         username,
         name,
@@ -74,11 +79,11 @@ export async function saveUserDataAction({
 }
 
 export async function getUserDataAction({
-  email
+  id
 }: GetUserDataActionProps): Promise<GetUserDataActionType> {
   try {
     const user = await prisma.user.findUnique({
-      where: { email }
+      where: { id }
     });
 
     if (!user) return undefined;

@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext } from 'react';
-import { User } from '@/interfaces/user.interface';
+import { User } from '@prisma/client';
 
 interface AuthProps {
   user: User | null | undefined;

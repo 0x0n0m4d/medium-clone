@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
-import { User } from '@/interfaces/user.interface';
+import { User } from '@prisma/client';
 import { getUserSessionData } from '@/redux/slices/userData.slice';
 import { AppDispatch } from '@/redux/store';
 

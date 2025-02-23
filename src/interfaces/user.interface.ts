@@ -1,14 +1,3 @@
-export interface User {
-  id: number;
-  email: string;
-  name: string;
-  username: string;
-  photoUrl: string;
-  isActivated: boolean;
-  bio: string | null;
-  pronouns: string[];
-}
-
 export interface SendMailProps {
   token?: string;
   redirectUrl?: string;
@@ -17,7 +6,7 @@ export interface SendMailProps {
 }
 
 export interface GetUserDataActionProps {
-  email: string;
+  id: string;
 }
 
 export interface SaveUserDataActionProps {

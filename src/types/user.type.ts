@@ -1,4 +1,4 @@
-import { User } from '@/interfaces/user.interface';
+import { User } from '@prisma/client';
 
 export type SendMailType = boolean | undefined;
 
