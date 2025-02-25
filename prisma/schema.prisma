@@ -41,15 +41,15 @@ model Follower {
 }
 
 model Article {
-  id        String        @id @default(uuid())
-  userId    String
-  createdAt DateTime      @default(now())
-  title     String
-  content   Bytes
-  lists     List[]
-  claps     ArticleClap[] @relation("ArticleClap")
+  id          String        @id @default(uuid())
+  userId      String
+  createdAt   DateTime      @default(now())
+  title       String
+  description String?
+  lists       List[]
+  claps       ArticleClap[] @relation("ArticleClap")
 
-  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([id, userId])
 }

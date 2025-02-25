@@ -35,8 +35,23 @@ const users = [
   }
 ];
 
-async function creatingUsers() {
+const articles = [
+  {
+    id: uuidv5(
+      'media-manipulation-lookalike-contests-and-fabricated-outrage',
+      NAMESPACE
+    ),
+    userId: users[2].id,
+    user: users[2],
+    createdAt: new Date(),
+    title: 'Media manipulation, lookalike contests, and fabricated outrage',
+    description: 'Issue #228: how to reflect on your year + avoid stress'
+  }
+];
+
+async function addUsers() {
   users.map(async user => {
+    console.log(user.id);
     await prisma.user.create({
       data: {
         id: user.id,
@@ -49,13 +64,28 @@ async function creatingUsers() {
         isFriend: user.isFriend
       }
     });
-    console.log(user.id);
+  });
+}
+
+async function addContent() {
+  articles.map(async article => {
+    await prisma.article.create({
+      data: {
+        id: article.id,
+        userId: article.userId,
+        createdAt: article.createdAt,
+        title: article.title,
+        description: article.description
+      }
+    });
   });
 }
 
 async function main() {
   console.log('[+] Adding users to database!');
-  await creatingUsers();
+  await addUsers();
+  console.log('[+] Adding articles to database!');
+  await addContent();
 }
 
 main();

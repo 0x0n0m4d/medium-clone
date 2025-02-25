@@ -2,12 +2,16 @@ import ArrowTopRight from './ArrowTopRight';
 import BookmarkIcon from './BookmarkIcon';
 import CalendarIcon from './CalendarIcon';
 import CheckIcon from './CheckIcon';
+import ClapIcon from './ClapIcon';
+import CommentIcon from './CommentIcon';
 import EllipsisIcon from './EllipsisIcon';
 import FillBookmarkIcon from './FillBookmarkIcon';
 import FillNoteIcon from './FillNoteIcon';
 import FillNotificationsIcon from './FillNotificationsIcon';
 import FillStatsIcon from './FillStatsIcon';
+import LessIcon from './LessIcon';
 import MastodonIcon from './MastodonIcon';
+import MoreIcon from './MoreIcon';
 import NoteIcon from './NoteIcon';
 import NotificationsIcon from './NotificationsIcon';
 import PlusIcon from './PlusIcon';
@@ -25,8 +29,12 @@ export {
   BookmarkIcon,
   CalendarIcon,
   CheckIcon,
+  ClapIcon,
+  CommentIcon,
   EllipsisIcon,
+  LessIcon,
   MastodonIcon,
+  MoreIcon,
   FillNoteIcon,
   NoteIcon,
   FillNotificationsIcon,

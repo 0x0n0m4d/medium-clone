@@ -36,7 +36,7 @@ const WhoToFollowContainer = ({
           className={
             description
               ? 'flex flex-col gap-y-2 max-w-[175px]'
-              : 'flex justify-start max-w-[175px]'
+              : 'flex max-w-[175px]'
           }
         >
           <h2 className="text-start text-ellipsis text-base font-bold">
