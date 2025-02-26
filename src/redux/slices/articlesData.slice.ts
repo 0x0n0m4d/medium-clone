@@ -16,6 +16,16 @@ export const getArticlesData = createAsyncThunk(
   }
 );
 
+export const getUsersArticlesData = createAsyncThunk(
+  'getArticlesData',
+  async (username: string): Promise<any> => {
+    const res = await axios.get('/api/articles/user', {
+      params: { username: username }
+    });
+    return res.data.articles;
+  }
+);
+
 const initialState: ArticlesDataProps = {
   isLoading: false,
   data: null,

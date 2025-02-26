@@ -22,28 +22,29 @@ const RightBar = () => {
   const [articlesBunch, setArticlesBunch] = useState<ArticlesBunchType[]>([]);
 
   useEffect(() => {
-    if (!articlesData.data && !articlesData.isLogin && user) {
+    if (!articlesData.data && !articlesData.isLoading && user) {
       dispatch(getArticlesData(user.id)).then(res => {
         res.payload.map(async (article: Article) => {
-          await getUserDataAction({ id: article.userId }).then(writer => {
-            if (writer?.isActivated) {
-              setArticlesBunch([
-                ...articlesBunch,
-                { article: article, writer: writer }
-              ]);
-            }
-          });
+          await getUserDataAction({ id: article.userId })
+            .then(writer => {
+              if (writer?.isActivated) {
+                articlesBunch.push({ article: article, writer: writer });
+              }
+            })
+            .finally(() => {
+              setArticlesBunch([...articlesBunch]);
+            });
         });
       });
     }
-  }, [articlesData]);
+  }, []);
 
   return (
     <div className="w-full min-w-[573px] max-w-[728px] h-full flex flex-col items-start justify-start px-10 pt-16">
       <NavTag />
-      <div className="w-full min-h-screen h-full flex flex-col mt-16">
-        {articlesBunch.map((data: ArticlesBunchType) => (
-          <span key={data.writer.name}>
+      <ul className="grid w-full min-h-screen h-full mt-16">
+        {articlesBunch.map((data: ArticlesBunchType, index) => (
+          <li key={index}>
             <ArticlesCard
               user={data.writer}
               title={data.article.title}
@@ -51,9 +52,9 @@ const RightBar = () => {
               createdAt={data.article.createdAt.toString()}
               claps={0}
             />
-          </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

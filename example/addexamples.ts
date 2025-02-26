@@ -30,7 +30,7 @@ const users = [
     username: '@dailynewsletter',
     photoUrl: '/assets/users/@dailynewsletter/avatar.jpeg',
     bio: '',
-    isMember: false,
+    isMember: true,
     isFriend: true
   }
 ];
@@ -42,16 +42,42 @@ const articles = [
       NAMESPACE
     ),
     userId: users[2].id,
-    user: users[2],
-    createdAt: new Date(),
+    createdAt: new Date(2025, 1, 11),
     title: 'Media manipulation, lookalike contests, and fabricated outrage',
     description: 'Issue #228: how to reflect on your year + avoid stress'
+  },
+  {
+    id: uuidv5('making-featured-stories-even-more-visible', NAMESPACE),
+    userId: users[1].id,
+    createdAt: new Date(2025, 1, 12),
+    title: 'Making Featured stories even more visible',
+    description:
+      'Introducing new push notifications and Featured story feeds for publication followers'
+  },
+  {
+    id: uuidv5(
+      'the-day-i-got-a-ketamine-infusion-while-my-house-burned-down',
+      NAMESPACE
+    ),
+    userId: users[1].id,
+    createdAt: new Date(2025, 1, 13),
+    title: 'The day I got a ketamine infusion while my house burned down.',
+    description: ''
+  },
+  {
+    id: uuidv5(
+      '8-javaScript-performance-tips-i-discovered-after-years-of-coding',
+      NAMESPACE
+    ),
+    userId: users[1].id,
+    createdAt: new Date(2025, 1, 18),
+    title: '8 JavaScript Performance Tips I Discovered After Years of Coding',
+    description: ''
   }
 ];
 
 async function addUsers() {
-  users.map(async user => {
-    console.log(user.id);
+  users.forEach(async user => {
     await prisma.user.create({
       data: {
         id: user.id,
@@ -68,7 +94,7 @@ async function addUsers() {
 }
 
 async function addContent() {
-  articles.map(async article => {
+  articles.forEach(async article => {
     await prisma.article.create({
       data: {
         id: article.id,
@@ -82,8 +108,11 @@ async function addContent() {
 }
 
 async function main() {
+  const delay = (ms: any) => new Promise(res => setTimeout(res, ms));
+
   console.log('[+] Adding users to database!');
   await addUsers();
+  await delay(5000);
   console.log('[+] Adding articles to database!');
   await addContent();
 }

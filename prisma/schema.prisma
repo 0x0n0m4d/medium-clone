@@ -50,8 +50,6 @@ model Article {
   claps       ArticleClap[] @relation("ArticleClap")
 
   user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([id, userId])
 }
 
 model List {

@@ -11,19 +11,17 @@ interface Props {
 
 const PicksContainer = ({ avatar, user, title, publishedDate }: Props) => {
   const today = new Date();
+  const createdAt = new Date(publishedDate);
   const _MS_PER_DAY = 1000 * 60 * 60 * 24;
   const utc1 = Date.UTC(
-    publishedDate.getFullYear(),
-    publishedDate.getMonth(),
-    publishedDate.getDate()
+    createdAt.getFullYear(),
+    createdAt.getMonth(),
+    createdAt.getDate()
   );
   const utc2 = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
   const diffDays = Math.floor((utc2 - utc1) / _MS_PER_DAY);
 
-  const publishedMonth = monthSelector(publishedDate.getMonth()).substring(
-    0,
-    3
-  );
+  const publishedMonth = monthSelector(createdAt.getMonth()).substring(0, 3);
 
   return (
     <div className="w-full flex flex-col gap-y-3">
@@ -52,7 +50,7 @@ const PicksContainer = ({ avatar, user, title, publishedDate }: Props) => {
         <span className="text-xs text-stone-500">
           {diffDays <= 7
             ? `${diffDays}d ago`
-            : `${publishedMonth} ${publishedDate.getDate()}`}
+            : `${publishedMonth} ${createdAt.getDate()}`}
         </span>
       </Link>
     </div>
