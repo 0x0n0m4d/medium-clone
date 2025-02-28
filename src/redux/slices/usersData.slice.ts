@@ -1,6 +1,6 @@
 import { User } from '@prisma/client';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getUsersAction } from '@/actions/user.action';
+import { getUserDataAction, getUsersAction } from '@/actions/user.action';
 
 interface UsersDataProps {
   isLoading: boolean;
@@ -13,6 +13,14 @@ export const getUsersData = createAsyncThunk(
   async (id: string): Promise<any> => {
     const users = await getUsersAction({ id });
     return users;
+  }
+);
+
+export const getUniqueUserData = createAsyncThunk(
+  'getUniqueUserData',
+  async (id: string): Promise<any> => {
+    const user = await getUserDataAction({ id: id });
+    return user;
   }
 );
 

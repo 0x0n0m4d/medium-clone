@@ -1,6 +1,8 @@
 import { Article } from '@prisma/client';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { v5 as uuidv5 } from 'uuid';
 import axios from '@/app/api/axios';
+import { NAMESPACE } from '@/lib/utils';
 
 interface ArticlesDataProps {
   isLoading: boolean;
@@ -23,6 +25,32 @@ export const getUsersArticlesData = createAsyncThunk(
       params: { username: username }
     });
     return res.data.articles;
+  }
+);
+
+export const getUniqueArticleData = createAsyncThunk(
+  'getUniqueArticleData',
+  async ({ title, username }: { title: string; username: string }) => {
+    const content = await axios
+      .get(`/articles/${username}/${title}.md`)
+      .then(res => {
+        return res.data;
+      });
+    if (!content) return undefined;
+
+    const articleId = uuidv5(title, NAMESPACE);
+    const data = await axios
+      .get('/api/articles/user', {
+        params: { username: username }
+      })
+      .then(res => {
+        return res.data.articles;
+      });
+
+    return {
+      metadata: data.filter((article: Article) => article.id === articleId),
+      content: content
+    };
   }
 );
 
