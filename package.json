@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "next start",
+    "build": "next build",
     "test": "react-scripts test",
+    "db:deploy": "npx prisma generate && npx prisma db push",
+    "db:add_content": "npx tsx ./example/addexamples.ts",
     "lint": "eslint ."
   },
   "dependencies": {

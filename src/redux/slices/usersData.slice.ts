@@ -11,7 +11,7 @@ interface UsersDataProps {
 export const getUsersData = createAsyncThunk(
   'getUsersData',
   async (id: string): Promise<any> => {
-    const users = await getUsersAction({ id });
+    const users = await getUsersAction({ id: id });
     return users;
   }
 );
