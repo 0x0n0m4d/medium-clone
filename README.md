@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Medium Clone
 
-## Getting Started
+A platform for writers to share their articles (*markdown supported*) and read articles from other writers. This project mainly uses **NextJS**, **TailwindCSS**, **Typescript**, **Prisma** and **Redis**.
 
-First, run the development server:
+## Previews
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![front page](./preview/preview1.png)
+![user home](./preview/preview2.png)
+![article view](./preview/preview3.png)
+
+## Running the Project
+### Cloning the repository
+
+```fish
+git clone https://github.com/0x0n0m4d/medium-clone
+cd medium-clone
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install packages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```fish
+yarn
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Setup .env file
 
-## Learn More
+```sh
+RESEND_API_KEY=
+DATABASE_URL="postgresql://postgres:randompassword@postgres:5432/postgres?schema=public"
+NEXT_PUBLIC_URL=http://localhost:8080
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Running project with docker
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```fish
+docker-compose up -d
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Stack
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [NextJS](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Prisma](https://www.prisma.io/)
+- [Docker](https://www.docker.com/)
+  - [Redis](https://redis.io/)
